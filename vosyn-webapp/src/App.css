@@ -1,0 +1,9 @@
+:root {
+    --grey: #9a9a9a;
+    --blue: #527af9;
+}
+
+body {
+    background-color: #121118;
+    overflow: hidden;
+}
