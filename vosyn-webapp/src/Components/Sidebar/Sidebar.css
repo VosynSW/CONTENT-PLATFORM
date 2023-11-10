@@ -1,0 +1,84 @@
+.sidebar-container {
+    background-color: #141414;
+    height: 100vh;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-title-container{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 30px;
+    min-width: 160px;
+}
+
+.sidebar-title-container i {
+    color: white;
+    font-size: 1.0rem;
+    background-color: #2b2d2b;
+    padding: 10px;
+    border-radius: 100%;
+}
+
+.sidebar-title-container img {
+    width: 110px;
+    object-fit: cover;
+    margin-left: 20px;
+    position: relative;
+    top: 3px;
+}
+
+.sidebar-item-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 30px;
+    min-width: 180px;
+}
+
+.sidebar-item {
+    color: var(--grey);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px 5px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    padding: 5px 0px;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar-item i {
+    margin-left: 10px;
+}
+
+.sidebar-item:hover {
+    background-color: var(--blue);
+    cursor: pointer;
+    color: white;
+}
+
+.sidebar-item-name {
+    margin-left: 20px;
+}
+
+.sidebar-item:hover .fa-solid {
+    margin-left: 20px; /* Adds 20px to the right margin when sidebar item is hovered */
+}
+
+.sidebar-item-title {
+    color: white;
+    font-size: 1.0rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.sidebar-line {
+    border-top: 1px solid var(--grey);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
