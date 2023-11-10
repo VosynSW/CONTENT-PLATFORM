@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../Components/Sidebar/Sidebar';
 import Navbar from '../Components/Navbar/Navbar';
+import Earth from '../Components/Earth/Earth';
 
 import './Home.css';
 
 function Home() {
+    const [reRender, setReRender] = useState(false);
 
     let videoTypes = [
         {
@@ -49,14 +51,15 @@ function Home() {
         {
             name: "Travel",
             icon: "fa-plane-departure"
-        },
+        }
+
     ]
 
-    const videoTypeBar = videoTypes.map((videoType) => {
+    const videoTypeBar = videoTypes.map((videoType, index) => {
         return (
-            <div className="video-type">
+            <div className="video-type" key={index}>
                 <div >
-                    <i class={"fa-solid " + videoType.icon}></i>
+                    <i className={"fa-solid " + videoType.icon}></i>
                 </div>
                 <div className="video-type-name">
                     {videoType.name}
@@ -65,16 +68,21 @@ function Home() {
         )
     })
 
+    const triggerRender = () => {
+        console.log("trigger render");
+        setReRender(!reRender);
+    }
+
     return (
         <div className='home-container'>
-            <Sidebar />
+            <Sidebar triggerRender={triggerRender}/>
             <div className='home-body'>
                 <Navbar />
                 <div className="video-type-bar">
                     {videoTypeBar}
                 </div>
                 <div className='globe-container'>
-                    <img src="/assets/globe.png"/>
+                    <Earth reRender={reRender}/>
                 </div>
             </div>
 
