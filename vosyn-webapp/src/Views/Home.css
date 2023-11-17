@@ -56,6 +56,7 @@
 }
 
 .globe-container {
+  position: relative;
   min-height: 100% !important;
   height: 100%;
   width: 100%;
@@ -63,7 +64,7 @@
 
 .home-fullscreen {
   position: absolute;
-  right: 0;
+  right: 0px;
   margin-right: 3rem;
   margin-top: 2rem;
   color: var(--text);
