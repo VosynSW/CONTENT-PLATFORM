@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './RegionSelector.css';
+import React, { useState, useRef, useEffect } from "react";
+import "./RegionSelector.css";
 
 function RegionSelector() {
   const [isSearch, setIsSearch] = useState(false);
   const searchInputRef = useRef(null); // Create a ref for the input
+  const [showDiv, setShowDiv] = useState(false);
 
   useEffect(() => {
     if (isSearch) {
@@ -14,13 +15,13 @@ function RegionSelector() {
   let regionList = [
     {
       name: "Canada",
-      flag: "ca.png"
+      flag: "ca.png",
     },
     {
       name: "United States",
-      flag: "us"
+      flag: "us",
     },
-  ]
+  ];
 
   const CountryDropdown = ({ countries }) => {
     const [selectedCountry, setSelectedCountry] = useState(countries[0]);
@@ -38,13 +39,24 @@ function RegionSelector() {
         <div className="country-dropdown-header" onClick={toggleDropdown}>
           <img src={"/assets/" + selectedCountry.flag} />
           <span>{selectedCountry.name}</span>
-          {!isOpen ? <i className="fa-solid fa-chevron-down"></i> : <i className="fa-solid fa-chevron-up"></i>}
+          {!isOpen ? (
+            <i className="fa-solid fa-chevron-down"></i>
+          ) : (
+            <i className="fa-solid fa-chevron-up"></i>
+          )}
         </div>
         {isOpen && (
           <div className="country-dropdown-list">
             {regionList.map((country, index) => (
-              <div key={index} className="dropdown-item" onClick={() => handleCountrySelect(country)}>
-                <img src={"/assets/" + country.flag} style={{ width: '20px', marginRight: '10px' }} />
+              <div
+                key={index}
+                className="dropdown-item"
+                onClick={() => handleCountrySelect(country)}
+              >
+                <img
+                  src={"/assets/" + country.flag}
+                  style={{ width: "20px", marginRight: "10px" }}
+                />
                 <span>{country.name}</span>
               </div>
             ))}
@@ -54,19 +66,49 @@ function RegionSelector() {
     );
   };
 
+  const mountedStyle = {
+    animation: "inAnimation 250ms ease-in",
+  };
+  const unmountedStyle = {
+    animation: "outAnimation 270ms ease-out",
+    animationFillMode: "forwards",
+  };
+
   return (
-    <div className='region-selector-container'>
-      {isSearch ?
-        <div className='region-selector-text-container'>
+    <div
+      className="region-selector-container"
+      style={showDiv ? mountedStyle : unmountedStyle}
+    >
+      {showDiv ? (
+        <div
+          className={`region-selector-text-container`}
+          onAnimationEnd={() => {
+            if (!isSearch) setShowDiv(false);
+          }}
+        >
           <input
             ref={searchInputRef} // Attach the ref to the input
             className="region-selector-text"
             type="text"
             placeholder="Search"
           />
-          <i onClick={() => setIsSearch(false)} className="fa-solid fa-xmark"></i>
+          <i
+            onClick={() => {
+              setIsSearch(false);
+              setShowDiv(false);
+            }}
+            className="fa-solid fa-xmark"
+          ></i>
         </div>
-        : <i onClick={() => setIsSearch(true)} className="fa-solid fa-magnifying-glass"></i>}
+      ) : (
+        <i
+          onClick={() => {
+            setIsSearch(true);
+            if (!showDiv) setShowDiv(true);
+          }}
+          className="fa-solid fa-magnifying-glass"
+        ></i>
+      )}
       <CountryDropdown countries={regionList} />
     </div>
   );
