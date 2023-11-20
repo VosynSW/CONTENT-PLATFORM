@@ -204,13 +204,15 @@ function RegionSelector() {
           </div>
         </div>
       ) : (
-        <i
-          onClick={() => {
-            setIsSearch(true);
-            if (!showDiv) setShowDiv(true);
-          }}
-          className="fa-solid fa-magnifying-glass"
-        ></i>
+        <>
+          <i
+            onClick={() => {
+              setIsSearch(true);
+              if (!showDiv) setShowDiv(true);
+            }}
+            className="fa-solid fa-magnifying-glass"
+          ></i>
+        </>
       )}
       <CountryDropdown countries={regionList} />
     </div>

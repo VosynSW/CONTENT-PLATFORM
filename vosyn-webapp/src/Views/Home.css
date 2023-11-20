@@ -89,14 +89,8 @@
 }
 
 .home-videos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   margin: 0px auto;
   padding: 5px 0px;
-  z-index: 3;
-  height: max-content;
   width: 95%;
   position: relative;
 }

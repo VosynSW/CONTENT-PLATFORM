@@ -23,6 +23,7 @@
   margin-left: 20px;
   transition: all 0.2s ease-in-out;
   height: max-content;
+  z-index: 1;
 }
 
 .airis-icon:hover {
@@ -46,6 +47,7 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
+  z-index: -1;
 }
 
 .airis-input-container button {

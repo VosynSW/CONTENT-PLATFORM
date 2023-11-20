@@ -11,8 +11,13 @@ function ThemeSwitch(props) {
       moonRef.current?.classList.add("active");
       sunRef.current?.classList.remove("active");
       document.body.classList.remove("light-mode");
+      console.log("Dark Mode");
       localStorage.setItem("isDarkMode", true);
     } else {
+      moonRef.current?.classList.remove("active");
+      sunRef.current?.classList.add("active");
+      document.body.classList.add("light-mode");
+      localStorage.setItem("isDarkMode", false);
     }
     props.triggerRender();
   }, [isDarkMode]);
