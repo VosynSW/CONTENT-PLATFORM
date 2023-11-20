@@ -15,9 +15,7 @@
   border-radius: 10px;
   padding: 10px;
 }
-.airis-container {
-  nav-down: 2;
-}
+
 .airis-icon {
   display: flex;
   flex-direction: row;
