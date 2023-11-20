@@ -101,6 +101,13 @@
   position: relative;
 }
 
+.home-airis {
+  position: absolute;
+  right: 0px;
+  top: 100px;
+  z-index: 3;
+}
+
 /* Responsive Design */
 /* @media (max-width: 768px) {
     .home-container {

@@ -3,6 +3,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 import Navbar from "../Components/Navbar/Navbar";
 import Earth from "../Components/Earth/Earth";
 import VideoCards from "../Components/VideoCards/VideoCards";
+import Airis from "../Components/Airis/Airis";
 
 import "./Home.css";
 
@@ -81,6 +82,9 @@ function Home() {
           <div className="home-fullscreen">
             <h2>Exit Fullscreen</h2>
             <i className="fa-solid fa-expand-arrows-alt fa-beat"></i>
+          </div>
+          <div className="home-airis">
+            <Airis />
           </div>
           <Earth reRender={reRender} />
         </div>
