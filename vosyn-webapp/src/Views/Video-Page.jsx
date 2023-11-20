@@ -1,9 +1,15 @@
 import React from 'react';
+import ReactPlayer from "react-player";
 
-function VideoPage() {
+const VideoPage = ({ video }) => {
   return (
-    <div>
- 
+    <div className="media-player">
+      <ReactPlayer
+        url={video.url}
+        controls // Display default controls (play, pause, volume, etc.)
+        width="100%"
+        height="100%"
+      />
     </div>
   );
 }
