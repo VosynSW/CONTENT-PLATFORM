@@ -5,5 +5,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
-    z-index: 5;
+}
+navbar-container{
+    background-color: yellow;
+    display: flex;
+
+
 }

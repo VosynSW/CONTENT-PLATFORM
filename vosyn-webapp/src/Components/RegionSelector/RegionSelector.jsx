@@ -69,7 +69,7 @@ function RegionSelector() {
         : <i onClick={() => setIsSearch(true)} className="fa-solid fa-magnifying-glass"></i>}
       <CountryDropdown countries={regionList} />
     </div>
-  );
+  ); 
 }
 
 export default RegionSelector;

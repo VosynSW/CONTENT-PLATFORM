@@ -10,7 +10,6 @@
     transition: all 0.2s ease-in-out;
     height: max-content;
 }
-
 .region-selector-container>i {
     color: var(--text);
     background-color: var(--lightgrey);
