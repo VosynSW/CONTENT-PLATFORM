@@ -22,4 +22,20 @@ const VideoCards = () => {
   );
 }
 
+
+  // return (
+  //   <div className="video-cards">
+  //     {videos.map((video) => (
+  //       <div className="video-card" key={video.id}>
+  //         <img src={video.thumbnail} alt={video.title} />
+  //         <div className="video-info">
+  //           <h3>{video.title}</h3>
+  //           <p>{video.description}</p>
+  //         </div>
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
+
+
 export default VideoCards;
