@@ -1,0 +1,254 @@
+.video-body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  margin-left: 250px; /* 250px is the width of the sidebar */
+  transition: all 0.3s ease-in-out;
+}
+
+.video-body.collapsed {
+  margin-left: 0px !important;
+}
+
+.video-body.portrait {
+  margin-left: 80px;
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 77%;
+  margin: 20px auto;
+  justify-content: flex-start !important;
+  border: none;
+}
+
+.video-description {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 20px auto;
+  justify-content: flex-start !important;
+  border: none;
+  border-radius: 10px;
+  color: var(--text);
+  background-color: var(--darkgrey);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  height: 10%;
+  border: none;
+  border-bottom: 1px solid var(--lightgrey);
+}
+
+.header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.header-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-user > div {
+  display: flex;
+  flex-direction: column;
+  font: 0.7em sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.header-user > div > h2 {
+  margin-top: 5%;
+  font: 1em sans-serif;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  padding: 20px;
+  width: 100%;
+  height: 90%;
+  border: none;
+}
+
+.body > h1 {
+  font: 1.3em sans-serif;
+  margin-bottom: 10px;
+  font-weight: 700 !important;
+}
+
+.body > h2 {
+  font: 0.9em sans-serif;
+  margin-bottom: 30px;
+}
+
+.body-main {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.body-main > h2 {
+  font: 1.3em sans-serif;
+  margin-bottom: 10px;
+  font-weight: 600 !important;
+}
+
+.body-main > p {
+  font: 0.9em sans-serif;
+  margin-bottom: 20px;
+}
+
+.body > span {
+  width: fit-content;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.body > span:hover {
+  transform: scale(1.1);
+}
+
+.button > i {
+  margin-right: 10px;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.video-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+  color: var(--text);
+  background-color: var(--darkgrey);
+}
+
+.video-comments > h1 {
+  font: 1.3em sans-serif;
+  margin-bottom: 10px;
+}
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+  width: 100%;
+  height: 10%;
+  border: none;
+  border-bottom: 1px solid var(--lightgrey);
+}
+
+.video-comments img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment > input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: var(--lightgrey);
+  color: var(--text);
+}
+
+.comments {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  margin: 10px;
+}
+
+.comments > div {
+  margin-left: 30px;
+}
+
+.comments p {
+  font: 0.9em sans-serif;
+  margin-bottom: 10px;
+}
+
+.row h1 {
+  font: 0.9em sans-serif;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.row h2 {
+  font: 0.7em sans-serif;
+  margin-bottom: 10px;
+  color: var(--lightgrey);
+}
+
+.row > span {
+  width: fit-content;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-right: 20px;
+  font-size: 0.8em;
+  color: var(--lightgrey);
+}
+
+.row > span:hover {
+  transform: scale(1.1);
+  color: var(--text);
+}
+
+.like {
+  color: var(--blue) !important;
+}
+
+.like > i {
+  margin-right: 5px;
+}
+
+.show-more-button {
+  margin-top: 20px;
+  margin-left: 1%;
+  font-size: 0.8em;
+  color: var(--text);
+  transition: all 0.3s ease-in-out;
+}
+
+.show-more-button:hover {
+  color: var(--blue);
+  font-size: 0.9em;
+  cursor: pointer;
+}
