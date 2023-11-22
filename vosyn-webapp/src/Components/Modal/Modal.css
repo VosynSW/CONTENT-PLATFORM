@@ -1,0 +1,147 @@
+/* FILEPATH: /c:/Users/CharllieDhaldane/Desktop/Work/portfolio/VOSYN-WEBAPP/vosyn-webapp/src/Components/Modal/Modal.css */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: var(--darkgrey);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  min-width: 20%;
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+.modal-content input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--lightgrey);
+  color: var(--text);
+  outline: none;
+  font: 1em sans-serif;
+}
+
+.modal-content h1 {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: var(--text);
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 0.5px solid var(--text);
+}
+
+.modal-main {
+  border-bottom: 0.5px solid var(--text);
+  margin-bottom: 0px;
+}
+
+.modal-search {
+  display: flex;
+  align-items: center;
+  background-color: var(--lightgrey);
+  border-radius: 10px;
+  color: var(--text);
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-search i {
+  font-size: 0.8rem;
+}
+
+.modal-search input {
+  margin-bottom: 0;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--lightgrey);
+  color: var(--text);
+  outline: none;
+  width: 100%;
+}
+
+.modal-friend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.modal-friend > div {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.modal-friend > div > img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.modal-friend-add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 3px solid var(--lightgrey);
+  width: 2rem;
+  height: 2rem;
+  padding: 5px 0px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.modal-friend-add-button i {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.modal-friend-add-button.selected {
+  background-color: rgb(175, 175, 175);
+  color: var(--text);
+}
+
+.modal-friend-add-button:hover {
+  background-color: rgb(175, 175, 175);
+}
+
+.modal-create-button {
+  background-color: var(--blue);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  color: var(--text);
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.fa-close {
+  align-self: flex-end;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--text);
+  position: relative;
+  left: 10px;
+}

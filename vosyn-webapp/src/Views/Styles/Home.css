@@ -35,14 +35,38 @@
 .video-type-bar {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: center;
   margin: 0px auto;
   padding: 5px 0px;
   border-bottom: 1px solid var(--text);
   z-index: 3;
-  height: max-content;
+  min-height: 50px !important;
   width: 95%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.video-type-bar::-webkit-scrollbar {
+  width: 1px !important;
+  height: 10px !important;
+}
+
+.video-type-bar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.video-type-bar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.video-type-bar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  width: 1px;
+}
+
+.theme-collapsed {
+  margin-left: 20px;
 }
 
 .video-type-name {

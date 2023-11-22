@@ -5,7 +5,7 @@ import Earth from "../Components/Earth/Earth";
 import VideoCards from "../Components/VideoCards/VideoCards";
 import Airis from "../Components/Airis/Airis";
 
-import "./Home.css";
+import "./Styles/Home.css";
 
 function Home() {
   const [reRender, setReRender] = useState(false);

@@ -79,7 +79,7 @@
   justify-content: center;
   color: var(--text);
   background-color: var(--text);
-  border-radius: 30px;
+  border-radius: 10px;
   width: 100%;
 }
 

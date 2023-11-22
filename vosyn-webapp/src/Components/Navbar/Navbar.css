@@ -55,3 +55,13 @@
 .navbar-img img {
   width: 50px;
 }
+
+@media screen and (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .navbar-right {
+    right: 0rem;
+  }
+}
