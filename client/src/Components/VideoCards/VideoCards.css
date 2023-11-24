@@ -1,38 +1,50 @@
-/* FILEPATH: /c:/Users/CharllieDhaldane/Desktop/Work/portfolio/VOSYN-WEBAPP/vosyn-webapp/src/Components/VideoCards/VideoCards.css */
-
 .video-cards {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 0px;
-  border: 2px dashed blue;
 }
 
-.video-card {
-  width: 390px;
-  padding: 20px;
-  border-radius: 5px;
+.video-card { 
+  padding: 7px;
 }
 
 .video-card img {
   width: 100%;
-  height: auto;
   border-radius: 5px;
+  height: auto;
 }
 
 .video-info {
-  margin-top: 10px;
-  color: var(--text);
+  display: flex;
+  align-items: flex-start;
+  margin-top: 3px;
+  height: 70px;
 }
 
-.video-info h3 {
-  font-size: 18px;
+.video-info img{
+  width: 15%;
+  border-radius: 50%;
+}
+
+.video-info h3{
+  color: #f7f9ff;
+  font-size: 16px;
+  font-weight:600;
+}
+
+.video-info h5{
+  color: #dfdfdf; 
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.main-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 3px;
+  margin-left: 10px;
+  height: 100%;
+}
+
+.channel{
   margin-bottom: 5px;
-}
-
-.video-info p {
-  font-size: 14px;
-  color: #666;
 }

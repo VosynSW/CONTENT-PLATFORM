@@ -82,6 +82,28 @@ function Home() {
     setReRender(!reRender);
   };
 
+  const [isFullScreen, setIsFullScreen] = useState(true);
+  const toggleFullScreen = () => setIsFullScreen(!isFullScreen);
+
+  // return (
+  //     <div className='home-container'>
+  //         <Sidebar />
+  //         <div className='home-body'>
+  //             <Navbar />
+  //             <div className="video-type-bar">
+  //                 {videoTypeBar}
+  //             </div>
+  //             <div className='globe-container'>
+  //                 <button className="fullscreen-button" onClick={toggleFullScreen}>
+  //                     {isFullScreen? "Exit Fullscreen" : "Fullscreen"}
+  //                     <i class={isFullScreen ? "fa-solid fa-minimize" : "fa-solid fa-maximize"}></i>
+  //                 </button>
+  //                 {isFullScreen ? (<><img src="/assets/globe.png"/></>) : (<div><VideoCards /></div>)} 
+  //             </div>
+  //         </div>
+  //     </div>
+  // );
+
   return (
     <div className="home-container">
       <Sidebar
