@@ -1,0 +1,50 @@
+.video-cards {
+  display: flex;
+}
+
+.video-card { 
+  padding: 7px;
+}
+
+.video-card img {
+  width: 100%;
+  border-radius: 5px;
+  height: auto;
+}
+
+.video-info {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 3px;
+  height: 70px;
+}
+
+.video-info img{
+  width: 15%;
+  border-radius: 50%;
+}
+
+.video-info h3{
+  color: #f7f9ff;
+  font-size: 16px;
+  font-weight:600;
+}
+
+.video-info h5{
+  color: #dfdfdf; 
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.main-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 3px;
+  margin-left: 10px;
+  height: 100%;
+}
+
+.channel{
+  margin-bottom: 5px;
+}

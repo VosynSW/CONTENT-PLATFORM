@@ -8,34 +8,21 @@ const VideoCards = () => {
     <div className="video-cards">
       {videoData.map((video) => (
         <div className="video-card" key={video.id}>
-          <img src={video.thumbnail} />
-          <div className="video-card-content">
-            {/* <img className="channel-img" src={video.channelImg} alt="channel-img" /> */}
-            <h3 className="title">{video.title}</h3>
-            <h5 className="channel">{video.channelName}</h5>
-            {/* <h5 className="date">{video.duration}</h5> */}
+          <img src={video.thumbnail} alt={video.title} />
+          <div className="video-info">  
+            <img className="channel-img" src={video.channelImg} alt={video.channelImg} />
+            <div className="main-info"> 
+              <h3 className="title">{video.title}</h3>
+              <div className="data">
+                <h5 className="channel">{video.channelName}</h5>
+                <h5 className="views">{video.views} views</h5>
+              </div>
+            </div>
           </div>
-          {/* <MediaPlayer url={video.url} /> */}
         </div>
       ))}
     </div>
   );
 }
-
-
-  // return (
-  //   <div className="video-cards">
-  //     {videos.map((video) => (
-  //       <div className="video-card" key={video.id}>
-  //         <img src={video.thumbnail} alt={video.title} />
-  //         <div className="video-info">
-  //           <h3>{video.title}</h3>
-  //           <p>{video.description}</p>
-  //         </div>
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
-
 
 export default VideoCards;
