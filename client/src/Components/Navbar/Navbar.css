@@ -10,29 +10,33 @@
 }
 
 .navbar-region-selector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  float: left;
+  flex-grow: 0;
+  text-align: center;
+}
+
+.navbar-region-selector.portrait {
+  margin-left: 0%;
 }
 
 .navbar-right {
   display: flex;
-  align-items: center;
-  float: right;
-  position: absolute;
   right: 2rem;
+  position: absolute;
+}
+
+.navbar-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbar-item {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 1rem;
   cursor: pointer;
   background-color: var(--side-bg);
   border-radius: 100%;
   padding: 0.8rem;
+  margin: 0 1rem;
 }
 
 .navbar-item:hover {
@@ -63,5 +67,15 @@
 
   .navbar-right {
     right: 0rem;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .navbar-region-selector {
+    margin: 0 auto;
+  }
+
+  .navbar-right {
+    position: relative;
   }
 }

@@ -55,6 +55,8 @@ function VideoPage() {
 
   return (
     <div className="home-container">
+      <div className="radial-circle-pink"></div>
+      <div className="radial-circle-blue"></div>
       <Sidebar setIsCollapsed={setIsCollapsed} isPortrait={isPortrait} />
       <div
         className={`video-body ${isCollapsed ? "collapsed" : ""} ${
