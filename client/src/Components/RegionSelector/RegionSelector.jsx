@@ -15,12 +15,48 @@ function RegionSelector() {
 
   let regionList = [
     {
+      name: "Afghanistan",
+      flag: "af.png",
+    },
+    {
+      name: "Azerbaijan",
+      flag: "az.png",
+    },
+    {
+      name: "Indonesia",
+      flag: "in.png",
+    },
+    {
+      name: "Malaysia",
+      flag: "ma.png",
+    },
+    {
+      name: "Bosnia",
+      flag: "bo.png",
+    },
+    {
       name: "Canada",
       flag: "ca.png",
     },
     {
+      name: "China",
+      flag: "ch.png",
+    },
+    {
+      name: "France",
+      flag: "fr.png",
+    },
+    {
+      name: "South Korea",
+      flag: "kr.png",
+    },
+    {
+      name: "Spain",
+      flag: "es.png",
+    },
+    {
       name: "United States",
-      flag: "us",
+      flag: "us.png",
     },
   ];
 
@@ -132,7 +168,7 @@ function RegionSelector() {
     return (
       <div className="country-dropdown">
         <div className="country-dropdown-header" onClick={toggleDropdown}>
-          <img src={"/assets/" + selectedCountry.flag} />
+          <img src={"/assets/flags/" + selectedCountry.flag} />
           <span>{selectedCountry.name}</span>
           {!isOpen ? (
             <i className="fa-solid fa-chevron-down"></i>
@@ -142,19 +178,28 @@ function RegionSelector() {
         </div>
         {isOpen && (
           <div className="country-dropdown-list">
+            <div className="region-collapse">
+              <span>Region</span>
+              <i className="fa-solid fa-xmark" onClick={toggleDropdown}></i>
+            </div>
+            <div className="region-search">
+              <i className="fa-solid fa-magnifying-glass"></i>
+              <input type="text" placeholder="Search your region"></input>
+            </div>
+            <div className="region-split"></div>
             {regionList.map((country, index) => (
               <div
                 key={index}
                 className="dropdown-item"
                 onClick={() => handleCountrySelect(country)}
               >
-                <img
-                  src={"/assets/" + country.flag}
-                  style={{ width: "20px", marginRight: "10px" }}
-                />
+                <></>
                 <span>{country.name}</span>
               </div>
             ))}
+            <div className="region-more-container">
+              <i className="fa-solid fa-angle-down"></i>
+            </div>
           </div>
         )}
       </div>
@@ -204,15 +249,13 @@ function RegionSelector() {
           </div>
         </div>
       ) : (
-        <>
-          <i
-            onClick={() => {
-              setIsSearch(true);
-              if (!showDiv) setShowDiv(true);
-            }}
-            className="fa-solid fa-magnifying-glass"
-          ></i>
-        </>
+        <i
+          onClick={() => {
+            setIsSearch(true);
+            if (!showDiv) setShowDiv(true);
+          }}
+          className="fa-solid fa-magnifying-glass"
+        ></i>
       )}
       <CountryDropdown countries={regionList} />
     </div>
