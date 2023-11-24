@@ -1,18 +1,4 @@
 .navbar-container {
-<<<<<<< HEAD
-    height: 10vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-}
-navbar-container{
-    background-color: yellow;
-    display: flex;
-
-
-=======
   position: relative;
   display: flex;
   height: 10vh;
@@ -68,5 +54,14 @@ navbar-container{
 
 .navbar-img img {
   width: 50px;
->>>>>>> 1ee5c5e80b35b5c2455b1b981262646faa520454
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .navbar-right {
+    right: 0rem;
+  }
 }
