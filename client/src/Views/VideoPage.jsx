@@ -62,7 +62,11 @@ function VideoPage() {
         }`}
       >
         <Navbar />
-        <div className="video-container">
+        <div
+          className={`video-container ${isCollapsed ? "collapsed" : ""} ${
+            isPortrait ? "portrait" : ""
+          }`}
+        >
           <VideoPlayer src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
           <div className="video-description">
             <div className="header">
@@ -74,7 +78,7 @@ function VideoPage() {
                 </div>
                 <button className="button blue">Subscribe</button>
               </div>
-              <div>
+              <div className="header-buttons">
                 <button className="button">
                   <i className="fa-solid fa-thumbs-up"></i>Like
                 </button>

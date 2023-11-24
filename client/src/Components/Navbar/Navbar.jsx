@@ -8,11 +8,11 @@ function Navbar() {
   const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 
   return (
-    <div className="navbar-container">
+    <div className={`navbar-container ${isPortrait && "portrait"}`}>
       <div className="navbar-region-selector">
         <RegionSelector />
       </div>
-      <div className="navbar-right">
+      <div className={`navbar-right ${isPortrait && "portrait"}`}>
         {!isPortrait && (
           <>
             <div className="navbar-item">
@@ -26,7 +26,7 @@ function Navbar() {
             </div>
           </>
         )}
-        <div className="navbar-img">
+        <div className={`navbar-img ${isPortrait && "portrait"}`}>
           <img src="/assets/globe.png" aria-label="User Profile" />
         </div>
       </div>

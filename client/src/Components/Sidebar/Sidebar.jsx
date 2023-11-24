@@ -228,13 +228,22 @@ function Sidebar(props) {
           className={`fa-solid ${isCollapsed ? "fa-bars" : "fa-times"}`}
         ></i>
         {!props.isPortrait && (
-          <img src="assets/vosyn_logo_long.png" alt="Vosyn Logo" />
+          <img
+            src="assets/vosyn_logo_long.png"
+            alt="Vosyn Logo"
+            onClick={() => (window.location.href = "/")}
+          />
         )}
       </div>
       <div
-        className={`sidebar-item-container ${
+        className={`sidebar-item-container scroll-y ${
           isCollapsed && "sidebar-item-collapsed"
         }`}
+        onScroll={(e) => {
+          console.log(e);
+          e.preventDefault();
+          e.stopPropagation();
+        }}
       >
         {sideBar}
       </div>
