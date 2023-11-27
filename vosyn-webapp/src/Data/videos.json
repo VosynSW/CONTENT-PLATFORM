@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Video 1",
     "url": "https://www.youtube.com/watch?v=MCy-ov7gnjw",
-    "thumbnail": "https://i.ytimg.com/vi/MCy-ov7gnjw/maxresdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
     "views": 900,
     "channelName": "MTV", 
@@ -37,6 +37,6 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
     "views": 790,
     "channelName": "VosynTV",
-    "channelImg": "../../public/assets/vosyn_logo.png"
+    "channelImg": "https://yt3.ggpht.com/8dmkFX1UcqiTQSTi2pbgNEHi-MPij0Ad6C0ENRbqm3wiZpBo8RYzXiQqyZNViC17JJEiEdTDH8o=s176-c-k-c0x00ffffff-no-rj-mo"
   }
 ]
