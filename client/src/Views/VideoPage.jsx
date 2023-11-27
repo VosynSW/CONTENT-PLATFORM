@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import VideoPlayer from "../Components/VideoPlayer/VideoPlayer";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Navbar from "../Components/Navbar/Navbar";
+import VideoSidebar from "../Components/VideoSidebar/VideoSidebar";
 
 import "./Styles/VideoPage.css";
 
@@ -58,6 +59,7 @@ function VideoPage() {
       <div className="radial-circle-pink"></div>
       <div className="radial-circle-blue"></div>
       <Sidebar setIsCollapsed={setIsCollapsed} isPortrait={isPortrait} />
+      <VideoSidebar />
       <div
         className={`video-body ${isCollapsed ? "collapsed" : ""} ${
           isPortrait ? "portrait" : ""

@@ -12,6 +12,9 @@
   min-width: 250px !important;
 }
 
+.region-selector-container:hover {
+}
+
 .region-selector-container > i {
   color: var(--text);
   background-color: var(--lightgrey);
@@ -21,8 +24,8 @@
 }
 
 .region-selector-container > i:hover {
-  transform: scale(1.1);
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 .country-dropdown {
@@ -32,6 +35,10 @@
   padding: 9px 20px;
   cursor: pointer;
   min-width: 190px !important;
+}
+
+.country-dropdown:hover {
+  transform: scale(1.03);
 }
 
 .country-dropdown.open {
