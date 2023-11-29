@@ -13,6 +13,7 @@ const VideoSidebar = () => {
     "#00FFFF",
     "#FF00FF",
   ];
+
   useEffect(() => {
     fetch("https://dummyjson.com/users")
       .then((res) => res.json())

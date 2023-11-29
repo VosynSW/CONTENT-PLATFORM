@@ -133,7 +133,12 @@ function EarthScene(props) {
         <directionalLight color="white" position={[5, 3, 5]} />
         <Earth onSelectContinent={setSelectedContinent} />
         {/* <Background /> */}
-        <OrbitControls />
+        <OrbitControls
+          enablePan={false}
+          enableDamping={false}
+          enableZoom={false}
+          makeDefault
+        />
         <Stars />
       </Canvas>
     </Suspense>

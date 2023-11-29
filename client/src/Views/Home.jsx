@@ -11,6 +11,7 @@ function Home() {
   const [reRender, setReRender] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isPortrait, setIsPortrait] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(true);
 
   let videoTypes = [
     {
@@ -82,28 +83,7 @@ function Home() {
     setReRender(!reRender);
   };
 
-  const [isFullScreen, setIsFullScreen] = useState(true);
   const toggleFullScreen = () => setIsFullScreen(!isFullScreen);
-
-  // return (
-  //     <div className='home-container'>
-  //         <Sidebar />
-  //         <div className='home-body'>
-  //             <Navbar />
-  //             <div className="video-type-bar">
-  //                 {videoTypeBar}
-  //             </div>
-  //             <div className='globe-container'>
-  //                 <button className="fullscreen-button" onClick={toggleFullScreen}>
-  //                     {isFullScreen? "Exit Fullscreen" : "Fullscreen"}
-  //                     <i class={isFullScreen ? "fa-solid fa-minimize" : "fa-solid fa-maximize"}></i>
-  //                 </button>
-  //                 {isFullScreen ? (<><img src="/assets/globe.png"/></>) : (<div><VideoCards /></div>)} 
-  //             </div>
-  //         </div>
-  //     </div>
-  // );
-
   return (
     <div className="home-container">
       <Sidebar
@@ -121,7 +101,10 @@ function Home() {
           <div className="video-type-bar">{videoTypeBar}</div>
           <div className="home-fullscreen">
             <h2>Exit Fullscreen</h2>
-            <i className="fa-solid fa-expand-arrows-alt fa-beat"></i>
+            <i
+              className="fa-solid fa-expand-arrows-alt fa-beat"
+              onClick={() => setIsFullScreen(true)}
+            ></i>
           </div>
           <div className="home-airis">
             <Airis />
@@ -130,9 +113,11 @@ function Home() {
             <Earth reRender={reRender} />
           </div>
         </div>
+        {/* {!isFullScreen && ( */}
         <div className="home-videos">
           <VideoCards />
         </div>
+        {/* )} */}
       </div>
     </div>
   );
