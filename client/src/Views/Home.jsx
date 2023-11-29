@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Navbar from "../Components/Navbar/Navbar";
 import Earth from "../Components/Earth/Earth";
 import VideoCards from "../Components/VideoCards/VideoCards";
 import Airis from "../Components/Airis/Airis";
+import countriesData from '../Data/ne_110m_admin_0_countries.geojson';
+import videosData from '../Data/videos.json';
 
 import "./Styles/Home.css";
 
 function Home() {
   const [reRender, setReRender] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isPortrait, setIsPortrait] = useState(false);
 
   let videoTypes = [
     {
@@ -69,14 +69,6 @@ function Home() {
     );
   });
 
-  useEffect(() => {
-    if (window.matchMedia("(orientation: portrait)").matches) {
-      setIsPortrait(true);
-    } else {
-      setIsPortrait(false);
-    }
-  });
-
   const triggerRender = () => {
     console.log("trigger render");
     setReRender(!reRender);
@@ -106,19 +98,11 @@ function Home() {
 
   return (
     <div className="home-container">
-      <Sidebar
-        triggerRender={triggerRender}
-        setIsCollapsed={setIsCollapsed}
-        isPortrait={isPortrait}
-      />
-      <div
-        className={`home-body ${isCollapsed ? "collapsed" : ""} ${
-          isPortrait ? "portrait" : ""
-        }`}
-      >
+      <Sidebar triggerRender={triggerRender} />
+      <div className="home-body">
         <Navbar />
+        <div className="video-type-bar">{videoTypeBar}</div>
         <div className="globe-container">
-          <div className="video-type-bar">{videoTypeBar}</div>
           <div className="home-fullscreen">
             <h2>Exit Fullscreen</h2>
             <i className="fa-solid fa-expand-arrows-alt fa-beat"></i>
@@ -126,9 +110,9 @@ function Home() {
           <div className="home-airis">
             <Airis />
           </div>
-          <div className="home-earth">
-            <Earth reRender={reRender} />
-          </div>
+          <Earth reRender={reRender} countries={countriesData} videos={videosData} />
+          {/* {console.log("printing  countriesData features")}
+          {console.log(countriesData.map((country) => country.features))} */}
         </div>
         <div className="home-videos">
           <VideoCards />
@@ -139,3 +123,4 @@ function Home() {
 }
 
 export default Home;
+
