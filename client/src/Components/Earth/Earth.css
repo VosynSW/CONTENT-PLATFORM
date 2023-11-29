@@ -7,3 +7,12 @@
 canvas {
   min-height: 90vh;
 }
+
+#globeViz {
+  width: 1000px !important;
+  height: 1000px !important;
+}
+
+.scene-container {
+  position: relative;
+}

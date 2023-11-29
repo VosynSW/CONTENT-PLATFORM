@@ -51,7 +51,7 @@
     "id": 5,
     "title": "Video 5",
     "url": "https://www.youtube.com/watch?v=abc123",
-    "thumbnail": "https://i.ytimg.com/vi/abc123/maxresdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
     "views": 1200,
     "channelName": "USA Videos",
