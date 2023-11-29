@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./RegionSelector.css";
+import Dropdown from "../Dropdown/Dropdown";
 
 function RegionSelector() {
   const [isSearch, setIsSearch] = useState(false);
   const searchInputRef = useRef(null); // Create a ref for the input
   const [showDiv, setShowDiv] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (isSearch) {
@@ -154,74 +156,61 @@ function RegionSelector() {
     );
   };
 
-  const CountryDropdown = ({ countries }) => {
-    const [selectedCountry, setSelectedCountry] = useState(countries[0]);
-    const [isOpen, setIsOpen] = useState(false);
-
+  const [selected, setSelected] = useState(regionList[0]);
+  const regionToggle = () => {
     const toggleDropdown = () => setIsOpen(!isOpen);
 
-    const handleCountrySelect = (country) => {
-      setSelectedCountry(country);
+    const handleSelection = (selected) => {
+      setSelected(selected);
       setIsOpen(false);
     };
 
+    // This is for the region's drop down menu
     return (
-      <div className="country-dropdown">
-        <div className="country-dropdown-header" onClick={toggleDropdown}>
-          <img src={"/assets/flags/" + selectedCountry.flag} />
-          <span>{selectedCountry.name}</span>
-          {!isOpen ? (
-            <i className="fa-solid fa-chevron-down"></i>
-          ) : (
-            <i className="fa-solid fa-chevron-up"></i>
-          )}
-        </div>
-        {isOpen && (
-          <div className="country-dropdown-list">
-            <div className="region-collapse">
-              <span>Region</span>
-              <i className="fa-solid fa-xmark" onClick={toggleDropdown}></i>
-            </div>
-            <div className="region-search">
-              <i className="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Search your region"></input>
-            </div>
-            <div className="region-split"></div>
-            {regionList.map((country, index) => (
-              <div
-                key={index}
-                className="dropdown-item"
-                onClick={() => handleCountrySelect(country)}
-              >
-                <></>
-                <span>{country.name}</span>
+      <>
+        {selected.flag && (
+          <div className="dropdown-container">
+            <div className="dropdown-header" onClick={toggleDropdown}>
+              <img src={"/assets/flags/" + selected.flag} />
+              <span>{selected.name}</span>
+              {!isOpen ? (
+                <i className="fa-solid fa-chevron-down"></i>
+              ) : (
+                <i className="fa-solid fa-chevron-up"></i>
+              )}</div>
+              <div className="region-dropdown">
+                {isOpen && (
+                  <Dropdown
+                    list={regionList}
+                    toggleDropdown={toggleDropdown}
+                    handleSelection={handleSelection}
+                    type="Region"
+                  />
+                )}
               </div>
-            ))}
-            <div className="region-more-container">
-              <i className="fa-solid fa-angle-down"></i>
-            </div>
+            
           </div>
         )}
-      </div>
+      </>
     );
   };
 
   return (
     <div
-      className="region-selector-container"
+      className="region-dropdown-container"
       style={showDiv ? mountedStyle[0] : unmountedStyle[0]}
     >
       {showDiv ? (
-        <div className={`region-selector-main`}>
+        <div className={`region-dropdown-main`}>
           <div
-            className={`region-selector-text-container`}
+            className={`region-dropdown-text-container`}
             onAnimationEnd={() => {
               if (!isSearch) setShowDiv(false);
             }}
           >
             <input
               ref={searchInputRef} // Attach the ref to the input
-              className="region-selector-text"
+              className="region-dropdown-text"
               type="text"
               placeholder="Search"
               onChange={(e) => {
@@ -242,7 +231,7 @@ function RegionSelector() {
             ></i>
           </div>
           <div
-            className="region-selector-search"
+            className="region-dropdown-search"
             style={isSearching ? mountedStyle[1] : unmountedStyle[1]}
           >
             {isSearching && <Search />}
@@ -257,7 +246,8 @@ function RegionSelector() {
           className="fa-solid fa-magnifying-glass"
         ></i>
       )}
-      <CountryDropdown countries={regionList} />
+
+      {regionToggle()}
     </div>
   );
 }

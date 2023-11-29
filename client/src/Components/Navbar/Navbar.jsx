@@ -1,5 +1,6 @@
 import React from "react";
 import RegionSelector from "../RegionSelector/RegionSelector";
+import LanguageSelector from "../LanguageSelector/LanguageSelector"
 import { useMediaQuery } from "react-responsive";
 
 import "./Navbar.css";
@@ -18,11 +19,9 @@ function Navbar() {
             <div className="navbar-item">
               <i className="fa-solid fa-plus" aria-label="Plus"></i>
             </div>
+              <LanguageSelector />
             <div className="navbar-item">
               <i className="fa-solid fa-bell" aria-label="Notifications"></i>
-            </div>
-            <div className="navbar-item">
-              <i className="fa-solid fa-user" aria-label="User Profile"></i>
             </div>
           </>
         )}
