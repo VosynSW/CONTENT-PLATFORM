@@ -179,14 +179,14 @@ function RegionSelector() {
                 <i className="fa-solid fa-chevron-up"></i>
               )}</div>
               <div className="region-dropdown">
-                {isOpen && (
+                
                   <Dropdown
                     list={regionList}
                     toggleDropdown={toggleDropdown}
                     handleSelection={handleSelection}
                     type="Region"
+                    isOpen={isOpen}
                   />
-                )}
               </div>
             
           </div>
@@ -241,6 +241,7 @@ function RegionSelector() {
         <i
           onClick={() => {
             setIsSearch(true);
+            setIsSearching(true)
             if (!showDiv) setShowDiv(true);
           }}
           className="fa-solid fa-magnifying-glass"
