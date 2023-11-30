@@ -4,13 +4,13 @@ import Navbar from "../Components/Navbar/Navbar";
 import Earth from "../Components/Earth/Earth";
 import VideoCards from "../Components/VideoCards/VideoCards";
 import Airis from "../Components/Airis/Airis";
-
 import "./Styles/Home.css";
 
 function Home() {
   const [reRender, setReRender] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isPortrait, setIsPortrait] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(true);
 
   let videoTypes = [
     {
@@ -82,27 +82,10 @@ function Home() {
     setReRender(!reRender);
   };
 
-  const [isFullScreen, setIsFullScreen] = useState(true);
-  const toggleFullScreen = () => setIsFullScreen(!isFullScreen);
-
-  // return (
-  //     <div className='home-container'>
-  //         <Sidebar />
-  //         <div className='home-body'>
-  //             <Navbar />
-  //             <div className="video-type-bar">
-  //                 {videoTypeBar}
-  //             </div>
-  //             <div className='globe-container'>
-  //                 <button className="fullscreen-button" onClick={toggleFullScreen}>
-  //                     {isFullScreen? "Exit Fullscreen" : "Fullscreen"}
-  //                     <i class={isFullScreen ? "fa-solid fa-minimize" : "fa-solid fa-maximize"}></i>
-  //                 </button>
-  //                 {isFullScreen ? (<><img src="/assets/globe.png"/></>) : (<div><VideoCards /></div>)} 
-  //             </div>
-  //         </div>
-  //     </div>
-  // );
+  const toggleFullScreen = () => {
+    console.log("Toggle FullScreen clicked");
+    setIsFullScreen(!isFullScreen);
+  }
 
   return (
     <div className="home-container">
@@ -119,20 +102,27 @@ function Home() {
         <Navbar />
         <div className="globe-container">
           <div className="video-type-bar">{videoTypeBar}</div>
-          <div className="home-fullscreen">
-            <h2>Exit Fullscreen</h2>
-            <i className="fa-solid fa-expand-arrows-alt fa-beat"></i>
-          </div>
           <div className="home-airis">
             <Airis />
           </div>
-          <div className="home-earth">
+          <div className="home-fullscreen" onClick={toggleFullScreen}>
+            {isFullScreen ? (<>
+              <h2>Exit Fullscreen</h2>
+              <i className="fa-solid fa-minimize"></i></>
+              ) : (
+              <><h2>Fullscreen</h2>
+              <i className="fa-solid fa-maximize"></i>
+              </>)}
+          </div>
+          <div className={`${isFullScreen ? "home-earth" : "home-earth-mini"}`}>
             <Earth reRender={reRender} />
           </div>
         </div>
-        <div className="home-videos">
-          <VideoCards />
-        </div>
+        {!isFullScreen ?
+          <div className="home-videos">
+            <VideoCards />
+          </div> : <></>
+        }
       </div>
     </div>
   );

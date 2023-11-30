@@ -134,7 +134,7 @@ function EarthScene(props) {
         <Earth onSelectContinent={setSelectedContinent} />
         {/* <Background /> */}
         <OrbitControls />
-        <Stars />
+        {/* <Stars /> */}
       </Canvas>
     </Suspense>
   );

@@ -95,6 +95,11 @@
   height: 100% !important;
 }
 
+.home-earth-mini {
+  height: 10% !important;
+  width: 100% !important;
+}
+
 .globe-container {
   position: relative;
   height: 100%;
@@ -108,6 +113,8 @@
   margin-top: 2rem;
   color: var(--text);
   display: flex;
+  cursor: pointer;
+  z-index: 1; 
 }
 
 .home-fullscreen:hover {
@@ -131,6 +138,7 @@
   margin: 0px auto;
   padding: 5px 0px;
   width: 95%;
+  height: 90%;
   position: relative;
 }
 
