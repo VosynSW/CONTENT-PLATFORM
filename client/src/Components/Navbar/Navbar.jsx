@@ -27,7 +27,10 @@ function Navbar() {
           </div>
         )}
         <div className={`navbar-img ${isPortrait && "portrait"}`}>
-          <img src="/assets/globe.png" aria-label="User Profile" />
+          <img
+            src={process.env.PUBLIC_URL + "/assets/globe.png"}
+            aria-label="User Profile"
+          />
         </div>
       </div>
     </div>

@@ -12,7 +12,10 @@ const Switch = () => {
     <label className="switch">
       <input type="checkbox" checked={isChecked} onChange={handleToggle} />
       <span className="slider">
-        <img src="/assets/vosyn_logo.png" alt="slider" />
+        <img
+          src={process.env.PUBLIC_URL + "/assets/vosyn_logo.png"}
+          alt="slider"
+        />
       </span>
     </label>
   );

@@ -197,7 +197,10 @@ function Sidebar(props) {
         onClick={sideBarItem.event}
       >
         {sideBarItem.icon && sideBarItem.type === "provider" ? (
-          <img src={`assets/${sideBarItem.icon}.png`} alt={sideBarItem.name} />
+          <img
+            src={process.env.PUBLIC_URL + `/assets/${sideBarItem.icon}.png`}
+            alt={sideBarItem.name}
+          />
         ) : (
           sideBarItem.icon &&
           sideBarItem.icon.includes("fa") && (
@@ -229,7 +232,7 @@ function Sidebar(props) {
         ></i>
         {!props.isPortrait && (
           <img
-            src="assets/vosyn_logo_long.png"
+            src={process.env.PUBLIC_URL + "/assets/vosyn_logo_long.png"}
             alt="Vosyn Logo"
             onClick={() => (window.location.href = "/")}
           />

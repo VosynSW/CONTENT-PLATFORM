@@ -134,7 +134,11 @@ const Airis = () => {
             setRenderResponse(false);
             setShowDiv(!showDiv);
           }}
-          src={isHover ? "/assets/airis-smile.png" : "/assets/airis.png"}
+          src={
+            isHover
+              ? process.env.PUBLIC_URL + "/assets/airis-smile.png"
+              : process.env.PUBLIC_URL + "/assets/airis.png"
+          }
           alt="Airis"
         />
       </div>
