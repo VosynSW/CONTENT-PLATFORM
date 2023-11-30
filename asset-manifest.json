@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.79ae38f5.css",
-    "main.js": "/static/js/main.b6f32db0.js",
-    "static/media/day-earth.jpg": "/static/media/day-earth.f9ee43d0ce48242b4dd2.jpg",
-    "static/media/normal.jpg": "/static/media/normal.fa7991f0a33b21901136.jpg",
-    "static/media/night-earth.jpg": "/static/media/night-earth.d806e996af3d4096322e.jpg",
-    "static/media/specular.png": "/static/media/specular.900b66327b1d9b5fa67b.png",
-    "static/media/clouds.jpg": "/static/media/clouds.405b4f4918ca2cece24a.jpg",
-    "static/media/space.jpg": "/static/media/space.9704bf4476a8273d149a.jpg",
-    "static/media/sky.jpg": "/static/media/sky.7e399514ff022bc47862.jpg",
-    "index.html": "/index.html",
-    "main.79ae38f5.css.map": "/static/css/main.79ae38f5.css.map",
-    "main.b6f32db0.js.map": "/static/js/main.b6f32db0.js.map"
+    "main.css": "/CONTENT-PLATFORM/static/css/main.79ae38f5.css",
+    "main.js": "/CONTENT-PLATFORM/static/js/main.2fdd2c75.js",
+    "static/media/day-earth.jpg": "/CONTENT-PLATFORM/static/media/day-earth.f9ee43d0ce48242b4dd2.jpg",
+    "static/media/normal.jpg": "/CONTENT-PLATFORM/static/media/normal.fa7991f0a33b21901136.jpg",
+    "static/media/night-earth.jpg": "/CONTENT-PLATFORM/static/media/night-earth.d806e996af3d4096322e.jpg",
+    "static/media/specular.png": "/CONTENT-PLATFORM/static/media/specular.900b66327b1d9b5fa67b.png",
+    "static/media/clouds.jpg": "/CONTENT-PLATFORM/static/media/clouds.405b4f4918ca2cece24a.jpg",
+    "static/media/space.jpg": "/CONTENT-PLATFORM/static/media/space.9704bf4476a8273d149a.jpg",
+    "static/media/sky.jpg": "/CONTENT-PLATFORM/static/media/sky.7e399514ff022bc47862.jpg",
+    "index.html": "/CONTENT-PLATFORM/index.html",
+    "main.79ae38f5.css.map": "/CONTENT-PLATFORM/static/css/main.79ae38f5.css.map",
+    "main.2fdd2c75.js.map": "/CONTENT-PLATFORM/static/js/main.2fdd2c75.js.map"
   },
   "entrypoints": [
     "static/css/main.79ae38f5.css",
-    "static/js/main.b6f32db0.js"
+    "static/js/main.2fdd2c75.js"
   ]
 }
