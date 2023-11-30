@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.79ae38f5.css",
-    "main.js": "/static/js/main.f018cf95.js",
+    "main.css": "/static/css/main.f5db8854.css",
+    "main.js": "/static/js/main.ff1994a4.js",
     "static/media/day-earth.jpg": "/static/media/day-earth.f9ee43d0ce48242b4dd2.jpg",
     "static/media/normal.jpg": "/static/media/normal.fa7991f0a33b21901136.jpg",
     "static/media/night-earth.jpg": "/static/media/night-earth.d806e996af3d4096322e.jpg",
@@ -10,11 +10,11 @@
     "static/media/space.jpg": "/static/media/space.9704bf4476a8273d149a.jpg",
     "static/media/sky.jpg": "/static/media/sky.7e399514ff022bc47862.jpg",
     "index.html": "/index.html",
-    "main.79ae38f5.css.map": "/static/css/main.79ae38f5.css.map",
-    "main.f018cf95.js.map": "/static/js/main.f018cf95.js.map"
+    "main.f5db8854.css.map": "/static/css/main.f5db8854.css.map",
+    "main.ff1994a4.js.map": "/static/js/main.ff1994a4.js.map"
   },
   "entrypoints": [
-    "static/css/main.79ae38f5.css",
-    "static/js/main.f018cf95.js"
+    "static/css/main.f5db8854.css",
+    "static/js/main.ff1994a4.js"
   ]
 }
