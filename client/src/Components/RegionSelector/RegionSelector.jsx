@@ -168,7 +168,11 @@ function RegionSelector() {
     return (
       <div className={`country-dropdown ${isOpen && "open"}`}>
         <div className={`country-dropdown-header`} onClick={toggleDropdown}>
-          <img src={"/assets/flags/" + selectedCountry.flag} />
+          <img
+            src={
+              process.env.PUBLIC_URL + "/assets/flags/" + selectedCountry.flag
+            }
+          />
           <span>{selectedCountry.name}</span>
           {!isOpen ? (
             <i className="fa-solid fa-chevron-down"></i>
