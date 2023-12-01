@@ -2,8 +2,9 @@
   display: flex;
 }
 
-.video-card { 
-  padding: 7px;
+.video-card {
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .video-card img {
@@ -16,22 +17,21 @@
   display: flex;
   align-items: flex-start;
   margin-top: 3px;
-  height: 70px;
 }
 
-.video-info img{
+.video-info img {
   width: 15%;
   border-radius: 50%;
 }
 
-.video-info h3{
+.video-info h3 {
   color: #f7f9ff;
   font-size: 16px;
-  font-weight:600;
+  font-weight: 600;
 }
 
-.video-info h5{
-  color: #dfdfdf; 
+.video-info h5 {
+  color: #dfdfdf;
   font-size: 12px;
   font-weight: normal;
 }
@@ -39,12 +39,17 @@
 .main-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin-top: 3px;
+  margin-top: 0px;
   margin-left: 10px;
   height: 100%;
 }
 
-.channel{
-  margin-bottom: 5px;
+.title {
+}
+
+.channel {
+}
+
+.video-sidebar {
+  background-color: var(--darkgrey);
 }
