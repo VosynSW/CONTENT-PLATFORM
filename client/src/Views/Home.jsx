@@ -108,11 +108,11 @@ function Home() {
           <div className="home-fullscreen" onClick={toggleFullScreen}>
             {isFullScreen ? (<>
               <h2>Exit Fullscreen</h2>
-              <i className="fa-solid fa-minimize"></i></>
-              ) : (
-              <><h2>Fullscreen</h2>
+              <i className="fa-solid fa-minimize"></i>
+              </>) : (<>
+              <h2>Fullscreen</h2>
               <i className="fa-solid fa-maximize"></i>
-              </>)}
+            </>)}
           </div>
           <div className={`${isFullScreen ? "home-earth" : "home-earth-mini"}`}>
             <Earth reRender={reRender} />
