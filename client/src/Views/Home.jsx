@@ -4,6 +4,9 @@ import Navbar from "../Components/Navbar/Navbar";
 import Earth from "../Components/Earth/Earth";
 import VideoCards from "../Components/VideoCards/VideoCards";
 import Airis from "../Components/Airis/Airis";
+import countriesData from "../Data/countries.json";
+import videosData from "../Data/videos.json";
+
 import "./Styles/Home.css";
 
 function Home() {
@@ -83,7 +86,6 @@ function Home() {
   };
 
   const toggleFullScreen = () => {
-    console.log("Toggle FullScreen clicked");
     setIsFullScreen(!isFullScreen);
   }
 
@@ -115,7 +117,11 @@ function Home() {
             </>)}
           </div>
           <div className={`${isFullScreen ? "home-earth" : "home-earth-mini"}`}>
-            <Earth reRender={reRender} />
+            <Earth
+              reRender={reRender}
+              videos={videosData}
+              countries={countriesData}
+            />
           </div>
         </div>
         {!isFullScreen ?

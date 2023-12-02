@@ -65,13 +65,13 @@ function RegionSelector() {
       animation: "inAnimation 250ms ease-in",
     },
     {
-      animation: "inCollapse 250ms ease-in",
+      animation: "inCollapse 350ms ease-in",
     },
   ];
 
   const unmountedStyle = [
     {
-      animation: "outAnimation 270ms ease-out",
+      animation: "outAnimation 250ms forwards",
       animationFillMode: "forwards",
     },
     {
@@ -166,8 +166,8 @@ function RegionSelector() {
     };
 
     return (
-      <div className="country-dropdown">
-        <div className="country-dropdown-header" onClick={toggleDropdown}>
+      <div className={`country-dropdown ${isOpen && "open"}`}>
+        <div className={`country-dropdown-header`} onClick={toggleDropdown}>
           <img src={"/assets/flags/" + selectedCountry.flag} />
           <span>{selectedCountry.name}</span>
           {!isOpen ? (
@@ -177,7 +177,10 @@ function RegionSelector() {
           )}
         </div>
         {isOpen && (
-          <div className="country-dropdown-list">
+          <div
+            className="country-dropdown-list"
+            style={isOpen ? mountedStyle[1] : unmountedStyle[1]}
+          >
             <div className="region-collapse">
               <span>Region</span>
               <i className="fa-solid fa-xmark" onClick={toggleDropdown}></i>
@@ -186,14 +189,13 @@ function RegionSelector() {
               <i className="fa-solid fa-magnifying-glass"></i>
               <input type="text" placeholder="Search your region"></input>
             </div>
-            <div className="region-split"></div>
             {regionList.map((country, index) => (
               <div
                 key={index}
                 className="dropdown-item"
                 onClick={() => handleCountrySelect(country)}
               >
-                <></>
+                {/* <img src={"/assets/flags/" + country.flag} /> */}
                 <span>{country.name}</span>
               </div>
             ))}

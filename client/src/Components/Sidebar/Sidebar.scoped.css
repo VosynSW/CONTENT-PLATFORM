@@ -170,14 +170,6 @@
   object-fit: cover;
 }
 
-.sidebar-night-toggle {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  color: var(--white);
-  margin-top: 1rem;
-}
-
 @keyframes fader {
   0% {
     transform: translateX(-250px);

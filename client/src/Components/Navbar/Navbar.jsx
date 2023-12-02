@@ -9,12 +9,12 @@ function Navbar() {
 
   return (
     <div className={`navbar-container ${isPortrait && "portrait"}`}>
-      <div className="navbar-region-selector">
+      <div className={`navbar-region-selector ${isPortrait && "portrait"}`}>
         <RegionSelector />
       </div>
       <div className={`navbar-right ${isPortrait && "portrait"}`}>
         {!isPortrait && (
-          <>
+          <div className="navbar-items">
             <div className="navbar-item">
               <i className="fa-solid fa-plus" aria-label="Plus"></i>
             </div>
@@ -24,7 +24,7 @@ function Navbar() {
             <div className="navbar-item">
               <i className="fa-solid fa-user" aria-label="User Profile"></i>
             </div>
-          </>
+          </div>
         )}
         <div className={`navbar-img ${isPortrait && "portrait"}`}>
           <img src="/assets/globe.png" aria-label="User Profile" />

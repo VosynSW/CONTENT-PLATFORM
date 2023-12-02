@@ -10,6 +10,29 @@ const VideoPlayer = ({ src }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [showTimeline, setShowTimeline] = useState(false);
+  const [volume, setVolume] = useState(1); // Default volume
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [captionsEnabled, setCaptionsEnabled] = useState(false);
+  const [resolution, setResolution] = useState("1080p");
+
+  const volumeContainerRef = useRef(null);
+  const settingsRef = useRef(null);
+
+  const toggleVolume = () => {
+    setShowVolumeSlider(!showVolumeSlider);
+  };
+
+  const handleVolumeChange = (e) => {
+    const newVolume = e.target.value;
+    setVolume(newVolume);
+    videoRef.current.volume = newVolume;
+  };
+
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
+  };
 
   const togglePlayPause = () => {
     const video = videoRef.current;
@@ -68,10 +91,33 @@ const VideoPlayer = ({ src }) => {
     }
   };
 
+  const handleDocumentClick = (e) => {
+    if (showVolumeSlider && !volumeContainerRef.current.contains(e.target)) {
+      setShowVolumeSlider(false);
+    }
+    if (
+      showSettings &&
+      settingsRef.current &&
+      !settingsRef.current.contains(e.target)
+    ) {
+      setShowSettings(false);
+    }
+  };
+
+  useEffect(() => {
+    // Adding click event listener
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      // Removing event listener on cleanup
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [showVolumeSlider, showSettings]);
+
   return (
     <div
       onMouseEnter={() => setShowTimeline(true)}
-      onMouseLeave={() => setShowTimeline(false)}
+      // onMouseLeave={() => setShowTimeline(false)}
       className="video-player"
     >
       <video
@@ -108,10 +154,72 @@ const VideoPlayer = ({ src }) => {
         <div className="time-display">
           {formatTime(currentTime)} / {formatTime(duration)}
         </div>
-        <i className="fa-solid fa-volume-low"></i>
-        <Switch />
+        <div className="volume-container" ref={volumeContainerRef}>
+          {volume === "0" ? (
+            <i class="fa-solid fa-volume-xmark"></i>
+          ) : (
+            <i className="fa-solid fa-volume-low" onClick={toggleVolume}></i>
+          )}
 
-        <i className="fa-solid fa-cog"></i>
+          {showVolumeSlider && (
+            <div className="volume-slideer-container">
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={volume}
+                onChange={handleVolumeChange}
+                className="volume-slider"
+              />
+            </div>
+          )}
+        </div>
+        <Switch />
+        <div className="settings-container" ref={settingsRef}>
+          <i className="fa-solid fa-cog" onClick={toggleSettings}></i>
+          {showSettings && (
+            <div className="settings-popup">
+              <div>
+                <i class="fa-solid fa-gauge"></i>
+                <label>Playback Speed</label>
+                <select
+                  value={playbackSpeed}
+                  onChange={(e) => setPlaybackSpeed(e.target.value)}
+                  defaultValue={1}
+                >
+                  {/* options for playback speed */}
+
+                  <option value="0.25">0.25</option>
+                  <option value="0.5">0.5</option>
+                  <option value="1">1</option>
+                  <option value="1.5">1.5</option>
+                  <option value="2">2</option>
+                </select>
+              </div>
+              <div>
+                <i className="fa-solid fa-closed-captioning"></i>
+                <label>Captions</label>
+                <input
+                  type="checkbox"
+                  checked={captionsEnabled}
+                  onChange={() => setCaptionsEnabled(!captionsEnabled)}
+                />
+              </div>
+              <div>
+                <i class="fa-solid fa-sliders"></i>
+                <label>Resolution</label>
+                <select
+                  value={resolution}
+                  onChange={(e) => setResolution(e.target.value)}
+                >
+                  {/* options for resolution */}
+                </select>
+              </div>
+            </div>
+          )}
+        </div>
+
         <i onClick={handleFullscreen} className="fa-solid fa-expand"></i>
       </div>
     </div>

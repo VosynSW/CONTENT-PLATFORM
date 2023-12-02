@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Sidebar.css";
+import "./Sidebar.scoped.css";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import Modal from "../Modal/Modal";
 
