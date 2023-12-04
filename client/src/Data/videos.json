@@ -1,23 +1,27 @@
 [
-  {      
+  {
     "id": 1,
     "title": "Video 1",
     "url": "https://www.youtube.com/watch?v=MCy-ov7gnjw",
-    "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 
+    "thumbnail": "https://i.ytimg.com/vi/MCy-ov7gnjw/maxresdefault.jpg",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
     "views": 900,
-    "channelName": "MTV", 
-    "channelImg": "https://yt3.ggpht.com/8dmkFX1UcqiTQSTi2pbgNEHi-MPij0Ad6C0ENRbqm3wiZpBo8RYzXiQqyZNViC17JJEiEdTDH8o=s176-c-k-c0x00ffffff-no-rj-mo"
+    "channelName": "MTV",
+    "channelImg": "https://yt3.ggpht.com/8dmkFX1UcqiTQSTi2pbgNEHi-MPij0Ad6C0ENRbqm3wiZpBo8RYzXiQqyZNViC17JJEiEdTDH8o=s176-c-k-c0x00ffffff-no-rj-mo",
+    "lat": 49.2827,
+    "lng": -123.1207
   },
   {
     "id": 2,
     "title": "Video 2",
     "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod", 
+    "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
     "views": 990,
     "channelName": "MTV",
-    "channelImg": "https://yt3.ggpht.com/8dmkFX1UcqiTQSTi2pbgNEHi-MPij0Ad6C0ENRbqm3wiZpBo8RYzXiQqyZNViC17JJEiEdTDH8o=s176-c-k-c0x00ffffff-no-rj-mo"
+    "channelImg": "https://yt3.ggpht.com/8dmkFX1UcqiTQSTi2pbgNEHi-MPij0Ad6C0ENRbqm3wiZpBo8RYzXiQqyZNViC17JJEiEdTDH8o=s176-c-k-c0x00ffffff-no-rj-mo",
+    "lat": 43.6510,
+    "lng": -79.3470
   },
   {
     "id": 3,
@@ -27,7 +31,9 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
     "views": 348,
     "channelName": "Dewdedie",
-    "channelImg": "https://yt3.ggpht.com/8dmkFX1UcqiTQSTi2pbgNEHi-MPij0Ad6C0ENRbqm3wiZpBo8RYzXiQqyZNViC17JJEiEdTDH8o=s176-c-k-c0x00ffffff-no-rj-mo"
+    "channelImg": "https://yt3.ggpht.com/8dmkFX1UcqiTQSTi2pbgNEHi-MPij0Ad6C0ENRbqm3wiZpBo8RYzXiQqyZNViC17JJEiEdTDH8o=s176-c-k-c0x00ffffff-no-rj-mo",
+    "lat": 51.0447,
+    "lng": -114.0719
   },
   {
     "id": 4,
@@ -37,6 +43,56 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
     "views": 790,
     "channelName": "VosynTV",
-    "channelImg": "../../public/assets/vosyn_logo.png"
+    "channelImg": "../../public/assets/vosyn_logo.png",
+    "lat": 45.5017,
+    "lng": -73.5673
+  },
+  {
+    "id": 5,
+    "title": "Video 5",
+    "url": "https://www.youtube.com/watch?v=abc123",
+    "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+    "views": 1200,
+    "channelName": "USA Videos",
+    "channelImg": "https://example.com/channel_logo.png",
+    "lat": 37.7749,
+    "lng": -122.4194
+  },
+  {
+    "id": 6,
+    "title": "Video 6",
+    "url": "https://www.youtube.com/watch?v=def456",
+    "thumbnail": "https://i.ytimg.com/vi/def456/maxresdefault.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+    "views": 850,
+    "channelName": "US Entertainment",
+    "channelImg": "https://example.com/channel_logo.png",
+    "lat": 34.0522,
+    "lng": -118.2437
+  },
+  {
+    "id": 7,
+    "title": "Video 7",
+    "url": "https://www.youtube.com/watch?v=ghi789",
+    "thumbnail": "https://i.ytimg.com/vi/ghi789/maxresdefault.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+    "views": 650,
+    "channelName": "American Vlogs",
+    "channelImg": "https://example.com/channel_logo.png",
+    "lat": 40.7128,
+    "lng": -74.0060
+  },
+  {
+    "id": 8,
+    "title": "Video 8",
+    "url": "https://www.youtube.com/watch?v=jkl012",
+    "thumbnail": "https://i.ytimg.com/vi/jkl012/maxresdefault.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+    "views": 980,
+    "channelName": "US Travel Adventures",
+    "channelImg": "https://example.com/channel_logo.png",
+    "lat": 41.8781,
+    "lng": -87.6298
   }
 ]

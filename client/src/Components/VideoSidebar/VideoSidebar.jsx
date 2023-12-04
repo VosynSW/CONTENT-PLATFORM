@@ -119,9 +119,20 @@ const VideoSidebar = (props) => {
             </span>
             <VideoCards data={test} />
           </div>
-          <div>
-            <div></div>
-            <div></div>
+          <div className="voice">
+            <h1>Voice Connected</h1>
+            <span>
+              <i class="fa-solid fa-microphone"></i>
+              <i class="fa-solid fa-volume-high"></i>
+            </span>
+          </div>
+          <div className="message">
+            <span>
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" placeholder="Search" />
+              <i class="fa-solid fa-smile"></i>
+            </span>
+            <img src={process.env.PUBLIC_URL + "/assets/popcorn.png"} />
           </div>
         </div>
       )}

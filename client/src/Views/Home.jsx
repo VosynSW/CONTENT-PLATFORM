@@ -4,6 +4,8 @@ import Navbar from "../Components/Navbar/Navbar";
 import Earth from "../Components/Earth/Earth";
 import VideoCards from "../Components/VideoCards/VideoCards";
 import Airis from "../Components/Airis/Airis";
+import countriesData from "../Data/countries.json";
+import videosData from "../Data/videos.json";
 
 import "./Styles/Home.css";
 
@@ -99,22 +101,29 @@ function Home() {
         <Navbar />
         <div className="globe-container">
           <div className="video-type-bar">{videoTypeBar}</div>
-          <div className="home-fullscreen">
-            <h2>Exit Fullscreen</h2>
-            <i
-              className="fa-solid fa-expand-arrows-alt fa-beat"
-              onClick={() => setIsFullScreen(true)}
-            ></i>
+          <div
+            className="home-fullscreen"
+            onClick={() => setIsFullScreen(!isFullScreen)}
+          >
+            <h2>{isFullScreen ? "Exit Fullscreen" : "Fullscreen"}</h2>
+            <i className="fa-solid fa-expand-arrows-alt fa-beat"></i>
           </div>
           <div className="home-airis">
             <Airis />
           </div>
           <div className="home-earth">
-            <Earth reRender={reRender} />
+            <Earth
+              reRender={reRender}
+              videos={videosData}
+              countries={countriesData}
+              isCollapsed={isCollapsed}
+              isFullScreen={isFullScreen}
+            />
           </div>
         </div>
         {/* {!isFullScreen && ( */}
         <div className="home-videos">
+          <h1>TRENDING IN CANADA 🇨🇦</h1>
           <VideoCards />
         </div>
         {/* )} */}

@@ -1,22 +1,29 @@
 .video-cards {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0px auto;
+  flex-direction: column;
 }
 
 .video-card {
   padding: 10px;
   border-radius: 10px;
+  width: 100%;
+  max-width: 20vw;
+  margin: 10px auto;
 }
 
 .video-card img {
   width: 100%;
+  min-height: 100%;
   border-radius: 5px;
-  height: auto;
 }
 
 .video-info {
   display: flex;
   align-items: flex-start;
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 .video-info img {
@@ -26,13 +33,13 @@
 
 .video-info h3 {
   color: #f7f9ff;
-  font-size: 16px;
+  font-size: 1.2em;
   font-weight: 600;
 }
 
 .video-info h5 {
   color: #dfdfdf;
-  font-size: 12px;
+  font-size: 1em;
   font-weight: normal;
 }
 
@@ -42,14 +49,4 @@
   margin-top: 0px;
   margin-left: 10px;
   height: 100%;
-}
-
-.title {
-}
-
-.channel {
-}
-
-.video-sidebar {
-  background-color: var(--darkgrey);
 }

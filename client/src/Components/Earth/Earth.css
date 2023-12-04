@@ -5,5 +5,14 @@
 }
 
 canvas {
-  min-height: 90vh;
+  transition: all 0.2s ease-in-out;
+}
+
+#globeViz {
+  width: 1000px !important;
+  height: 1000px !important;
+}
+
+.scene-container {
+  position: relative;
 }

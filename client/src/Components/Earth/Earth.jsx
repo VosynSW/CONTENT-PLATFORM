@@ -1,148 +1,118 @@
 import React, { useEffect, useRef, useState, Suspense } from "react";
-import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
-import { OrbitControls, Stars } from "@react-three/drei";
-import { TextureLoader, BackSide, Raycaster, Vector2 } from "three";
-import EarthNightMap from "./night-earth.jpg";
-import EarthDayMap from "./day-earth.jpg";
-import SpaceMap from "./space.jpg";
-import SkyMap from "./sky.jpg";
-import EarthNormalMap from "./normal.jpg";
-import EarthSpecularMap from "./specular.png";
-import EarthCloudsMap from "./clouds.jpg";
+
+import Globe from "react-globe.gl";
+import * as turf from "@turf/turf";
 import * as THREE from "three";
 
 import "./Earth.css";
 
-function Background() {
-  const isDarkMode = localStorage.getItem("isDarkMode") === "true";
-  const texture = useLoader(TextureLoader, SpaceMap);
+function Earth({ countries, videos, isCollapsed, isFullScreen }) {
+  const [hoveredCountry, setHoveredCountry] = useState(null);
+  const [tagData, setTagData] = useState([]);
+  const [earthWidth, setEarthWidth] = useState(800);
+  const [earthHeight, setEarthHeight] = useState(800);
+  const [loading, setLoading] = useState(true);
+  const world = useRef();
 
-  return (
-    <mesh scale={[100, 100, 100]}>
-      <sphereGeometry args={[1, 64, 64]} />
-      <meshBasicMaterial map={texture} side={BackSide} />
-    </mesh>
-  );
-}
+  useEffect(() => {
+    world.current.controls().enableZoom = false;
+    world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
 
-function Earth(props) {
-  const earthRef = useRef();
-  const cloudsRef = useRef();
-  const earthScale = 2;
-  const isDarkMode = localStorage.getItem("isDarkMode") === "true";
+    if (!isFullScreen) {
+      world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
+      setEarthHeight(500);
+      setEarthWidth(500);
+    } else {
+      world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
+      setEarthHeight(800);
+      setEarthWidth(800);
+    }
+    console.log(world.current.camera());
+    console.log(world.current.scene());
+  }, [isCollapsed, isFullScreen]);
 
-  const { camera } = useThree();
+  const handlePolygonClick = (polygon, coords) => {
+    let { lat, lng, altitude } = coords;
+    let activePolygon = polygon;
+    updateMarkers(activePolygon);
+    world.current.pointOfView({ lat, lng, altitude: 2 }, 1000);
+    setTimeout(() => {
+      activePolygon = null;
+    }, 0);
+  };
 
-  useFrame(({ clock }) => {
-    const elapsedTime = clock.getElapsedTime();
-    // earthRef.current.rotation.y = elapsedTime / 6;
-    // cloudsRef.current.rotation.y = elapsedTime / 6;
-  });
-
-  const onClick = (event) => {
-    const mouse = new Vector2(
-      (event.clientX / window.innerWidth) * 2 - 1,
-      -(event.clientY / window.innerHeight) * 2 + 1
-    );
-
-    const raycaster = new Raycaster();
-    raycaster.setFromCamera(mouse, camera);
-
-    const intersects = raycaster.intersectObject(earthRef.current);
-
-    if (intersects.length > 0) {
-      const point = intersects[0].point;
-      const latLng = convertToLatLng(point);
-      const continent = getContinentFromLatLng(latLng);
-      props.onSelectContinent(continent);
+  const updateMarkers = (activePolygon) => {
+    if (activePolygon) {
+      const filteredVideos = videos.filter((video) => {
+        const point = turf.point([video.lng, video.lat]);
+        return turf.booleanPointInPolygon(point, activePolygon);
+      });
+      setTagData(filteredVideos);
+    } else {
+      console.log("no hovered country");
+      return [];
     }
   };
 
-  function convertToLatLng(point, radius = 1) {
-    // Assuming point is a THREE.Vector3 object and radius is the globe's radius
-    const lat = (Math.asin(point.y / radius) * 180) / Math.PI;
-    const lng = (Math.atan2(point.x, point.z) * 180) / Math.PI;
+  const populateTags = (d) => {
+    const el = document.createElement("div");
+    const marker = `
+            <svg viewBox="-4 0 36 36" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <defs>
+                <pattern id="image-bg-${d.id}" patternUnits="objectBoundingBox" width="100%" height="100%">
+                  <image xlink:href="${d.thumbnail}" x="0" y="0" width="28" height="28" />
+                </pattern>
+              </defs>
+              <path fill="white" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268 0 14,0 Z"></path>
+              <circle fill="url(#image-bg-${d.id})" cx="14" cy="14" r="10"></circle>
+            </svg>
+          `;
 
-    return { lat, lng };
-  }
-
-  function getContinentFromLatLng({ lat, lng }) {
-    // This is a mock function. In a real application, you would query a database or use an API.
-    if (lat > 50 && lng < -30) {
-      return "North America";
-    } else if (lat > 30 && lng > -10 && lng < 40) {
-      return "Europe";
-    } else if (lat > 0 && lng > 40 && lng < 100) {
-      return "Asia";
-    } else if (lat < 0 && lng > 100) {
-      return "Australia";
-    } // ... other simple mock conditions for demonstration
-
-    return "Unknown"; // Fallback
-  }
-
-  // Attach the onClick handler to the canvas
-  // Note: You might need to adjust this based on how your Canvas is set up.
-  useEffect(() => {
-    document.addEventListener("click", onClick);
-    return () => {
-      document.removeEventListener("click", onClick);
-    };
-  }, [props.camera]);
-
-  let earthTexture = isDarkMode ? EarthNightMap : EarthDayMap;
-
-  return (
-    <>
-      <mesh
-        ref={earthRef}
-        scale={[earthScale, earthScale, earthScale]}
-        position={[0, -1, 0]}
-      >
-        <sphereGeometry args={[1, 32, 32]} />
-        <meshPhongMaterial
-          specularMap={new TextureLoader().load(EarthSpecularMap)}
-        />
-        <meshStandardMaterial
-          map={new TextureLoader().load(earthTexture)}
-          normalMap={new TextureLoader().load(EarthNormalMap)}
-        />
-      </mesh>
-      {/* <mesh ref={cloudsRef} scale={[earthScale, earthScale, earthScale]} position={[0, -1, 0]}>
-                <sphereGeometry args={[1.01, 32, 32]} />
-                <meshPhongMaterial
-                    map={new TextureLoader().load(EarthCloudsMap)}
-                    opacity={0.4}
-                    depthWrite={true}
-                    transparent={true}
-                    side={THREE.DoubleSide}
-                />
-            </mesh> */}
-    </>
-  );
-}
-
-function EarthScene(props) {
-  const [selectedContinent, setSelectedContinent] = useState(null);
-  const isDarkMode = localStorage.getItem("isDarkMode") === "true";
+    el.innerHTML = marker;
+    el.style.width = "50px";
+    el.style.height = "50px";
+    el.style["pointer-events"] = "auto";
+    el.style.cursor = "pointer";
+    el.onclick = () => console.info(d);
+    el.style.transform = "translate(-50%, -100%)"; // centers the SVG horizontally on the point and moves it up by its own height
+    return el;
+  };
 
   return (
     <Suspense fallback={<div className="loading">Loading Earth...</div>}>
-      <Canvas>
-        <ambientLight intensity={2} color="white" />
-        <directionalLight color="white" position={[5, 3, 5]} />
-        <Earth onSelectContinent={setSelectedContinent} />
-        {/* <Background /> */}
-        <OrbitControls
-          enablePan={false}
-          enableDamping={false}
-          enableZoom={false}
-          makeDefault
-        />
-        <Stars />
-      </Canvas>
+      <Globe
+        backgroundColor="#121118"
+        width={earthWidth}
+        height={earthHeight}
+        ref={world}
+        globeImageUrl={
+          "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        }
+        bumpImageUrl={"//unpkg.com/three-globe/example/img/earth-topology.png"}
+        atmosphereColor="white"
+        polygonsData={countries.features}
+        polygonAltitude={(d) => (d === hoveredCountry ? 0.02 : 0.01)}
+        polygonCapColor={(d) =>
+          d === hoveredCountry ? "rgba(64,196,250, 0.5)" : `rgba(0, 0, 0, 0)`
+        }
+        polygonSideColor={() => `rgba(0, 0, 0, 0)`}
+        polygonStrokeColor={() => `rgba(0, 0, 0, 0)`}
+        polygonLabel={({ properties: d }) => `
+        <b>${d.ADMIN} (${d.ISO_A2}):</b> <br />
+        Population: <i>${d.POP_EST}</i>
+      `}
+        onPolygonHover={(country) => {
+          setHoveredCountry(country);
+        }}
+        polygonsTransitionDuration={300}
+        onPolygonClick={(polygon, event, { lat, lng, altitude }) =>
+          handlePolygonClick(polygon, { lat, lng, altitude })
+        }
+        htmlElementsData={tagData}
+        htmlElement={(video) => populateTags(video)}
+      />
     </Suspense>
   );
 }
 
-export default EarthScene;
+export default Earth;

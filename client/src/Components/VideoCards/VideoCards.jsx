@@ -14,28 +14,30 @@ const VideoCards = (props) => {
   return (
     // display video card data
     <div className="video-cards">
-      {allData.map((video) => (
-        <div
-          className={`video-card ${props.className && props.className} `}
-          key={video.id}
-        >
-          <img src={video.thumbnail} alt={video.title} />
-          <div className="video-info">
-            <img
-              className="channel-img"
-              src={video.channelImg}
-              alt={video.channelImg}
-            />
-            <div className="main-info">
-              <h3 className="title">{video.title}</h3>
-              <div className="data">
-                <h5 className="channel">{video.channelName}</h5>
-                <h5 className="views">{video.views} views</h5>
+      <div className="row wrap">
+        {allData.map((video) => (
+          <div
+            className={`video-card ${props.className && props.className} `}
+            key={video.id}
+          >
+            <img src={video.thumbnail} alt={video.title} />
+            <div className="video-info">
+              <img
+                className="channel-img"
+                src={video.channelImg}
+                alt={video.channelImg}
+              />
+              <div className="main-info">
+                <h3 className="title">{video.title}</h3>
+                <div className="data">
+                  <h5 className="channel">{video.channelName}</h5>
+                  <h5 className="views">{video.views} views</h5>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
