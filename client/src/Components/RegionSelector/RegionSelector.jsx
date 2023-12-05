@@ -1,11 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./RegionSelector.css";
+import { useDispatch } from 'react-redux';
 
 function RegionSelector() {
   const [isSearch, setIsSearch] = useState(false);
   const searchInputRef = useRef(null); // Create a ref for the input
   const [showDiv, setShowDiv] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleRegionChange = (regionName) => {
+    dispatch({ type: 'SET_REGION', payload: regionName });
+  };
 
   useEffect(() => {
     if (isSearch) {
@@ -163,6 +169,7 @@ function RegionSelector() {
     const handleCountrySelect = (country) => {
       setSelectedCountry(country);
       setIsOpen(false);
+      handleRegionChange(country.name);
     };
 
     return (

@@ -2,6 +2,11 @@ import React, { useEffect, useRef, useState, Suspense } from "react";
 
 import Globe from "react-globe.gl";
 import * as turf from "@turf/turf";
+<<<<<<< Updated upstream
+=======
+import * as THREE from "three";
+import { useSelector } from 'react-redux';
+>>>>>>> Stashed changes
 
 import "./Earth.css";
 
@@ -11,8 +16,20 @@ function Earth({ countries, videos }) {
   const [earthWidth, setEarthWidth] = useState(window.innerWidth);
   const [earthHeight, setEarthHeight] = useState(window.innerHeight);
   const world = useRef();
+  const selectedRegion = useSelector(state => state.selectedRegion);
+  console.log(selectedRegion); 
+
+  const getRegionCoordinates = (regionName) => {
+    const region = countries.features.find(country => country.properties.ADMIN === regionName);
+    if (region) {
+      const centroid = turf.centroid(region);
+      return centroid.geometry.coordinates;
+    }
+    return null;
+  };
 
   useEffect(() => {
+<<<<<<< Updated upstream
     const resizeListener = () => {
       setEarthWidth(window.innerWidth);
       setEarthHeight(window.innerHeight);
@@ -22,6 +39,31 @@ function Earth({ countries, videos }) {
       window.removeEventListener("resize", resizeListener);
     };
   });
+=======
+    world.current.controls().enableZoom = false;
+     world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
+
+    if (selectedRegion) {
+      const coordinates = getRegionCoordinates(selectedRegion);
+      if (coordinates) {
+        const [lng, lat] = coordinates;
+        world.current.pointOfView({ lat, lng, altitude: 2.0 }, 1000);
+      }
+    }
+
+    if (!isFullScreen) {
+    //  world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
+      setEarthHeight(500);
+      setEarthWidth(500);
+    } else {
+    //  world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
+      setEarthHeight(800);
+      setEarthWidth(800);
+    }
+    console.log(world.current.camera());
+    console.log(world.current.scene());
+  }, [selectedRegion,isCollapsed, isFullScreen]);
+>>>>>>> Stashed changes
 
   const handlePolygonClick = (polygon, coords) => {
     let { lat, lng, altitude } = coords;
@@ -82,6 +124,7 @@ function Earth({ countries, videos }) {
         bumpImageUrl={"//unpkg.com/three-globe/example/img/earth-topology.png"}
         atmosphereColor="white"
         polygonsData={countries.features}
+        polygonsTransitionDuration={300}
         polygonAltitude={(d) => (d === hoveredCountry ? 0.02 : 0.01)}
         polygonCapColor={(d) =>
           d === hoveredCountry ? "rgba(64,196,250, 0.5)" : `rgba(0, 0, 0, 0)`
@@ -95,7 +138,6 @@ function Earth({ countries, videos }) {
         onPolygonHover={(country) => {
           setHoveredCountry(country);
         }}
-        polygonsTransitionDuration={300}
         onPolygonClick={(polygon, event, { lat, lng, altitude }) =>
           handlePolygonClick(polygon, { lat, lng, altitude })
         }
