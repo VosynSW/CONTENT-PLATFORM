@@ -1,11 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./RegionSelector.css";
+import { useDispatch } from 'react-redux';
 
 function RegionSelector() {
   const [isSearch, setIsSearch] = useState(false);
   const searchInputRef = useRef(null); // Create a ref for the input
   const [showDiv, setShowDiv] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const dispatch = useDispatch();
+ 
+
+  const handleRegionChange = (regionName) => {
+    dispatch({ type: 'SET_REGION', payload: regionName });
+  };
 
   useEffect(() => {
     if (isSearch) {
@@ -55,10 +62,12 @@ function RegionSelector() {
       flag: "es.png",
     },
     {
-      name: "United States",
+      name: "United States", // TURF uses US OF A
       flag: "us.png",
     },
   ];
+
+  const [selectedCountry, setSelectedCountry] = useState(regionList[0]);
 
   const mountedStyle = [
     {
@@ -155,7 +164,7 @@ function RegionSelector() {
   };
 
   const CountryDropdown = ({ countries }) => {
-    const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+    // const [selectedCountry, setSelectedCountry] = useState(countries[0]); moved to top
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
@@ -163,16 +172,13 @@ function RegionSelector() {
     const handleCountrySelect = (country) => {
       setSelectedCountry(country);
       setIsOpen(false);
+      handleRegionChange(country.name);
     };
 
     return (
       <div className={`country-dropdown ${isOpen && "open"}`}>
         <div className={`country-dropdown-header`} onClick={toggleDropdown}>
-          <img
-            src={
-              process.env.PUBLIC_URL + "/assets/flags/" + selectedCountry.flag
-            }
-          />
+          <img src={"/assets/flags/" + selectedCountry.flag} />
           <span>{selectedCountry.name}</span>
           {!isOpen ? (
             <i className="fa-solid fa-chevron-down"></i>
@@ -255,15 +261,14 @@ function RegionSelector() {
           </div>
         </div>
       ) : (
-        <i
-          onClick={() => {
-            setIsSearch(true);
-            if (!showDiv) setShowDiv(true);
-          }}
-          className="fa-solid fa-magnifying-glass"
-        ></i>
-      )}
-      <CountryDropdown countries={regionList} />
+        <i onClick={() => {
+          setIsSearch(true);
+          setShowDiv(true);
+        }}
+        className="fa-solid fa-magnifying-glass"
+      ></i>
+    )}
+    <CountryDropdown countries={regionList} />
     </div>
   );
 }
