@@ -27,9 +27,33 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
       setEarthHeight(800);
       setEarthWidth(800);
     }
-    console.log(world.current.camera());
-    console.log(world.current.scene());
   }, [isCollapsed, isFullScreen]);
+
+  useEffect(() => {
+    const CLOUDS_IMG_URL = "./clouds.jpg"; // from https://github.com/turban/webgl-earth
+    const CLOUDS_ALT = 0.004;
+    const CLOUDS_ROTATION_SPEED = -0.006; // deg/frame
+
+    new THREE.TextureLoader().load(CLOUDS_IMG_URL, (cloudsTexture) => {
+      console.log("cloudsTexture", cloudsTexture);
+      const clouds = new THREE.Mesh(
+        new THREE.SphereGeometry(
+          world.getGlobeRadius() * (1 + CLOUDS_ALT),
+          75,
+          75
+        ),
+        new THREE.MeshPhongMaterial({ map: cloudsTexture, transparent: true })
+      );
+      world.scene().add(clouds);
+
+      (function rotateClouds() {
+        clouds.rotation.y += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
+        requestAnimationFrame(rotateClouds);
+      })();
+    });
+
+    console.log(world.current);
+  }, []);
 
   const handlePolygonClick = (polygon, coords) => {
     let { lat, lng, altitude } = coords;

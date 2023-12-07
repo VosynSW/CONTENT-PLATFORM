@@ -62,8 +62,6 @@ function VideoPage() {
 
   return (
     <div className="home-container">
-      <div className="radial-circle-pink"></div>
-      <div className="radial-circle-blue"></div>
       <Sidebar setIsCollapsed={setIsCollapsed} isPortrait={isPortrait} />
       <div
         className={`video-body ${isCollapsed ? "collapsed" : ""} ${
@@ -77,6 +75,8 @@ function VideoPage() {
               isPortrait ? "portrait" : ""
             } ${!isVisible ? "invisible" : ""}`}
           >
+            <div className="radial-circle-pink"></div>
+            <div className="radial-circle-blue"></div>
             <VideoPlayer src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
             <div className="video-description">
               <div className="header">
