@@ -264,10 +264,7 @@
 .dropdown-item:hover {
   background-color: var(--green);
   border-radius: 10px;
-  margin: 0px 0.5rem;
-  transform: scale(1.1);
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
 }
 
 .dropdown-item span {

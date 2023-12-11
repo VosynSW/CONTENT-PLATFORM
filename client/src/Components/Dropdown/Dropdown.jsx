@@ -8,6 +8,8 @@ function Dropdown(props) {
   const { handleSelection } = props;
   const { isOpen } = props;
 
+  const dropdownRef = useRef(null);
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredSelections = selections.filter((selected) =>
@@ -33,6 +35,7 @@ function Dropdown(props) {
       <div
         className="dropdown"
         style={isOpen ? mountedStyle[0] : unmountedStyle[0]}
+        ref={dropdownRef}
       >
         <div className="dropdown-title">
           <span>{props.type}</span>

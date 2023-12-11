@@ -31,13 +31,6 @@
   padding: 5px 0px;
 }
 
-.dropdown-title i:hover {
-  color: var(--blue);
-  transform: scale(1.2);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
 .dropdown-searchbar {
   display: flex;
   justify-content: space-between;
@@ -82,12 +75,6 @@
   justify-content: center;
 }
 
-.dropdown-moreitem :hover {
-  color: var(--blue);
-  transform: scale(1.2);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
 @keyframes collapseDropdown {
   0% {
     height: 300px;

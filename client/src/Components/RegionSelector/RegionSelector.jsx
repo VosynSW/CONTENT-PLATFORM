@@ -10,6 +10,8 @@ function RegionSelector() {
   const [showDiv, setShowDiv] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [regionList, setRegionList] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     if (isSearch) {
@@ -28,6 +30,24 @@ function RegionSelector() {
         },
       ]);
     });
+  }, []);
+
+  useEffect(() => {
+    //set show div false if clicked outside
+
+    const handleClickOutside = (event) => {
+      console.log(event.target);
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsSearch(false);
+        setIsOpen(false);
+        setIsSearching(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const mountedStyle = [
@@ -126,7 +146,6 @@ function RegionSelector() {
 
   const CountryDropdown = ({ countries }) => {
     const [selectedCountry, setSelectedCountry] = useState(countries[0]);
-    const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -151,7 +170,7 @@ function RegionSelector() {
           )}
         </div>
 
-        <div className="country-dropdown-list">
+        <div className="country-dropdown-list" ref={dropdownRef}>
           <Dropdown
             list={regionList}
             toggleDropdown={toggleDropdown}
