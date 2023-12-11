@@ -23,7 +23,6 @@
   margin-left: 20px;
   transition: all 0.2s ease-in-out;
   height: max-content;
-  z-index: 1;
 }
 
 .airis-icon:hover {

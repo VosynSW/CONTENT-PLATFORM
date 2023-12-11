@@ -111,7 +111,7 @@
   margin-top: 2rem;
   color: var(--text);
   display: flex;
-  z-index: 3;
+  z-index: 1;
 }
 
 .home-fullscreen:hover {
@@ -149,7 +149,7 @@
   position: absolute;
   right: 0px;
   top: 100px;
-  z-index: 3;
+  z-index: 1;
 }
 
 /* Responsive Design */

@@ -25,6 +25,10 @@
   transition: 0.4s;
 }
 
+.slider-on {
+  animation: pulse 1s infinite;
+}
+
 .slider img {
   position: absolute;
   height: 20px;

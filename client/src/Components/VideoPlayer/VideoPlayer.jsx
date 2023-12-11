@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Switch from "../Switch/Switch";
 
 import "./VideoPlayer.css"; // Make sure to create a corresponding CSS file for styling
+import vid from "./messi.mp4";
 
 const VideoPlayer = ({ src }) => {
   const videoRef = useRef(null);
@@ -16,6 +17,7 @@ const VideoPlayer = ({ src }) => {
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [captionsEnabled, setCaptionsEnabled] = useState(false);
   const [resolution, setResolution] = useState("1080p");
+  const [timerState, setTimerState] = useState(false);
 
   const volumeContainerRef = useRef(null);
   const settingsRef = useRef(null);
@@ -67,6 +69,14 @@ const VideoPlayer = ({ src }) => {
       setDuration(video.duration || 0);
     }
   }, [videoRef]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    console.log(video.currentTime);
+    if (video.currentTime >= 12 && video.currentTime <= 13) {
+      setTimerState(true);
+    }
+  }, [videoRef?.current?.currentTime]);
 
   // Format time in HH:MM:SS
   const formatTime = (time) => {
@@ -130,7 +140,7 @@ const VideoPlayer = ({ src }) => {
         }}
         onClick={togglePlayPause}
       >
-        <source src={src} type="video/mp4" />
+        <source src={vid} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className={`controls ${showTimeline ? "show" : ""}`}>
@@ -175,7 +185,7 @@ const VideoPlayer = ({ src }) => {
             </div>
           )}
         </div>
-        <Switch />
+        <Switch switch={timerState} />
         <div className="settings-container" ref={settingsRef}>
           <i className="fa-solid fa-cog" onClick={toggleSettings}></i>
           {showSettings && (

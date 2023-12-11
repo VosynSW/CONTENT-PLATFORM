@@ -32,11 +32,16 @@
 
 .navbar-item {
   display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   background-color: var(--side-bg);
   border-radius: 100%;
-  padding: 0.8rem;
+  padding: 0.5rem;
   margin: 0 1rem;
+  width: 50px;
+  height: 50px;
+  line-height: 1;
 }
 
 .navbar-item:hover {

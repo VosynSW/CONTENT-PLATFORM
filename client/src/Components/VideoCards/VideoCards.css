@@ -16,7 +16,7 @@
 
 .video-card img {
   width: 100%;
-  min-height: 100%;
+  height: auto;
   border-radius: 5px;
 }
 
@@ -28,6 +28,7 @@
 
 .video-info img {
   width: 15%;
+  height: 50px;
   border-radius: 50%;
 }
 

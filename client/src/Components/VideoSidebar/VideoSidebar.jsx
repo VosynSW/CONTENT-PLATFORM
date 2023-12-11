@@ -29,23 +29,21 @@ const VideoSidebar = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(window.scrollY);
-    const scrollEventListener = () => {
-      if (window.scrollY > 0) {
-        props.setVisible(false);
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-        props.setVisible(true);
-        setIsExpanded(false);
-      }
-    };
-
-    window.addEventListener("scroll", scrollEventListener);
-
-    return () => {
-      window.removeEventListener("scroll", scrollEventListener);
-    };
+    // console.log(window.scrollY);
+    // const scrollEventListener = () => {
+    //   if (window.scrollY > 0) {
+    //     // props.setVisible(false);
+    //     setIsVisible(false);
+    //   } else {
+    //     setIsVisible(true);
+    //     // props.setVisible(true);
+    //     setIsExpanded(false);
+    //   }
+    // };
+    // window.addEventListener("scroll", scrollEventListener);
+    // return () => {
+    //   window.removeEventListener("scroll", scrollEventListener);
+    // };
   }, []);
 
   if (users.length === 0) return <div>Loading...</div>;
@@ -62,6 +60,51 @@ const VideoSidebar = (props) => {
       channelName: "VosynTV",
       channelImg:
         "https://yt3.ggpht.com/8dmkFX1UcqiTQSTi2pbgNEHi-MPij0Ad6C0ENRbqm3wiZpBo8RYzXiQqyZNViC17JJEiEdTDH8o=s176-c-k-c0x00ffffff-no-rj-mo",
+    },
+  ];
+
+  let messages = [
+    {
+      id: 1,
+      name: "John Adams",
+      message: "Hello World!",
+      profilepic: "https://dummyimage.com/600x400/000/fff",
+    },
+    {
+      id: 2,
+      name: "Sam Smith",
+      message: "Hello World!",
+      profilepic: "https://dummyimage.com/600x400/000/fff",
+    },
+    {
+      id: 2,
+      name: "Sam Smith",
+      message: "Hello World!",
+      profilepic: "https://dummyimage.com/600x400/000/fff",
+    },
+    {
+      id: 2,
+      name: "Sam Smith",
+      message: "Hello World!",
+      profilepic: "https://dummyimage.com/600x400/000/fff",
+    },
+    {
+      id: 2,
+      name: "Sam Smith",
+      message: "Hello World!",
+      profilepic: "https://dummyimage.com/600x400/000/fff",
+    },
+    {
+      id: 2,
+      name: "Sam Smith",
+      message: "Hello World!",
+      profilepic: "https://dummyimage.com/600x400/000/fff",
+    },
+    {
+      id: 2,
+      name: "Sam Smith",
+      message: "Hello World!",
+      profilepic: "https://dummyimage.com/600x400/000/fff",
     },
   ];
 
@@ -119,20 +162,36 @@ const VideoSidebar = (props) => {
             </span>
             <VideoCards data={test} />
           </div>
-          <div className="voice">
-            <h1>Voice Connected</h1>
-            <span>
-              <i class="fa-solid fa-microphone"></i>
-              <i class="fa-solid fa-volume-high"></i>
-            </span>
+
+          <div className="messages-container">
+            {messages.map((message) => {
+              return (
+                <div className="messages-content">
+                  <img src={message.profilepic} />
+                  <div>
+                    <h3>{message.name}</h3>
+                    <p>{message.message}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          <div className="message">
-            <span>
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Search" />
-              <i class="fa-solid fa-smile"></i>
-            </span>
-            <img src={process.env.PUBLIC_URL + "/assets/popcorn.png"} />
+          <div className="sidebar-footer">
+            <div className="voice">
+              <h1>Voice Connected</h1>
+              <span>
+                <i class="fa-solid fa-microphone"></i>
+                <i class="fa-solid fa-volume-high"></i>
+              </span>
+            </div>
+            <div className="message">
+              <span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search" />
+                <i class="fa-solid fa-smile"></i>
+              </span>
+              <img src={process.env.PUBLIC_URL + "/assets/popcorn.png"} />
+            </div>
           </div>
         </div>
       )}

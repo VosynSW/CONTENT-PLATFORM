@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import vid from "../VideoPlayer/messi.mp4";
 
 import "./Airis.css";
 
@@ -24,12 +25,12 @@ const Airis = () => {
     {
       id: 1,
       type: "text",
-      data: "Here is a video about traditional clothing in Japan. Enjoy!",
+      data: "Here is a video about Lionel Messi's struggle with living abroad.",
     },
     {
       id: 2,
       type: "video",
-      data: "https://www.youtube.com/embed/watch?v=uQX8UwV87Os",
+      data: vid,
     },
   ];
 
@@ -79,6 +80,7 @@ const Airis = () => {
               src={response.data}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              sandbox
             ></iframe>
             <button onClick={console.log("redirect to Vosyn Video Page")}>
               Start Watching

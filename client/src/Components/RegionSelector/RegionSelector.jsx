@@ -1,11 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./RegionSelector.css";
+import Dropdown from "../Dropdown/Dropdown";
+import countries from "../../Data/countries.json";
+import axios from "axios";
 
 function RegionSelector() {
   const [isSearch, setIsSearch] = useState(false);
   const searchInputRef = useRef(null); // Create a ref for the input
   const [showDiv, setShowDiv] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [regionList, setRegionList] = useState([]);
 
   useEffect(() => {
     if (isSearch) {
@@ -13,52 +17,18 @@ function RegionSelector() {
     }
   }, [isSearch]);
 
-  let regionList = [
-    {
-      name: "Afghanistan",
-      flag: "af.png",
-    },
-    {
-      name: "Azerbaijan",
-      flag: "az.png",
-    },
-    {
-      name: "Indonesia",
-      flag: "in.png",
-    },
-    {
-      name: "Malaysia",
-      flag: "ma.png",
-    },
-    {
-      name: "Bosnia",
-      flag: "bo.png",
-    },
-    {
-      name: "Canada",
-      flag: "ca.png",
-    },
-    {
-      name: "China",
-      flag: "ch.png",
-    },
-    {
-      name: "France",
-      flag: "fr.png",
-    },
-    {
-      name: "South Korea",
-      flag: "kr.png",
-    },
-    {
-      name: "Spain",
-      flag: "es.png",
-    },
-    {
-      name: "United States",
-      flag: "us.png",
-    },
-  ];
+  useEffect(() => {
+    Object.values(countries.features).map((country, i) => {
+      console.log(country);
+      setRegionList((prevRegionList) => [
+        ...prevRegionList,
+        {
+          name: country.properties?.ADMIN,
+          flag: country.properties?.ISO_A2.toLowerCase() + ".png",
+        },
+      ]);
+    });
+  }, []);
 
   const mountedStyle = [
     {
@@ -71,7 +41,7 @@ function RegionSelector() {
 
   const unmountedStyle = [
     {
-      animation: "outAnimation 250ms forwards",
+      animation: "outAnimation 350ms forwards",
       animationFillMode: "forwards",
     },
     {
@@ -164,7 +134,7 @@ function RegionSelector() {
       setSelectedCountry(country);
       setIsOpen(false);
     };
-
+    if (!selectedCountry) return <div>Loading...</div>;
     return (
       <div className={`country-dropdown ${isOpen && "open"}`}>
         <div className={`country-dropdown-header`} onClick={toggleDropdown}>
@@ -180,34 +150,16 @@ function RegionSelector() {
             <i className="fa-solid fa-chevron-up"></i>
           )}
         </div>
-        {isOpen && (
-          <div
-            className="country-dropdown-list"
-            style={isOpen ? mountedStyle[1] : unmountedStyle[1]}
-          >
-            <div className="region-collapse">
-              <span>Region</span>
-              <i className="fa-solid fa-xmark" onClick={toggleDropdown}></i>
-            </div>
-            <div className="region-search">
-              <i className="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Search your region"></input>
-            </div>
-            {regionList.map((country, index) => (
-              <div
-                key={index}
-                className="dropdown-item"
-                onClick={() => handleCountrySelect(country)}
-              >
-                {/* <img src={"/assets/flags/" + country.flag} /> */}
-                <span>{country.name}</span>
-              </div>
-            ))}
-            <div className="region-more-container">
-              <i className="fa-solid fa-angle-down"></i>
-            </div>
-          </div>
-        )}
+
+        <div className="country-dropdown-list">
+          <Dropdown
+            list={regionList}
+            toggleDropdown={toggleDropdown}
+            handleSelection={handleCountrySelect}
+            type="Region"
+            isOpen={isOpen}
+          />
+        </div>
       </div>
     );
   };

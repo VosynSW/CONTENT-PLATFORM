@@ -105,18 +105,27 @@ function VideoPage() {
               </div>
               <div className="body">
                 <h1>
-                  JoJo's Bizarre Adventure: All-Star Battle R - Update Patch 2.2
+                  Lionel Messi: The Heart of a Champion - Navigating Soccer and
+                  Longing for Home
                 </h1>
                 <h2>320,234 views | Oct 18, 2023</h2>
                 <div className="body-main">
                   <h2>Description</h2>
                   <p>
-                    Join us as we delve into the latest patch notes for JoJo's
-                    Bizarre Adventure All Star Battle R, unpacking all the
-                    exciting buffs and nerfs that have just hit the game. We’ll
-                    discuss the changes that affect hit behavior, pushing
-                    detection, recovery mechanics, assault assists, landing
-                    after aerial recovery, and more.
+                    Join us in this exclusive and heartfelt interview with
+                    soccer legend Lionel Messi as he opens up about his personal
+                    journey in the world of professional soccer. Born and raised
+                    in Argentina, Messi shares his experiences of leaving his
+                    homeland to pursue his dreams, the challenges of adapting to
+                    new cultures, and the emotions of playing soccer far from
+                    home. From his early days at FC Barcelona to his recent
+                    endeavors, Messi reflects on the blend of nostalgia and
+                    ambition that has fueled his extraordinary career. Whether
+                    you're a soccer fan, an aspiring athlete, or someone who
+                    relates to the universal feeling of missing home, this video
+                    offers a rare glimpse into the life of one of the greatest
+                    footballers of our time. Dive into Messi's world and
+                    discover the human side of a global sports icon.
                   </p>
                 </div>
                 <span>Show More</span>
