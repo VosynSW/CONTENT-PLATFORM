@@ -82,6 +82,7 @@ function Navbar() {
             handleSelection={handleSelection}
             type="Language"
             isOpen={isOpen}
+            setIsOpen={() => setIsOpen()}
           />
         </div>
       </div>

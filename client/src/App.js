@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Views/Home";
 import VideoPage from "./Views/VideoPage";
+import store from "./store.js";
 import "./App.css";
 
 function PasswordEntry({ onPasswordSuccess }) {
@@ -42,10 +44,12 @@ function App() {
   return (
     <>
       {sessionStorage.isAuthenticated ? (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/video" element={<VideoPage />} />
-        </Routes>
+        <Provider store={store}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/video" element={<VideoPage />} />
+          </Routes>
+        </Provider>
       ) : (
         <PasswordEntry onPasswordSuccess={authenticateUser} />
       )}

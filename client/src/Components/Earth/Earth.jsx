@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, Suspense } from "react";
 import Globe from "react-globe.gl";
 import * as turf from "@turf/turf";
 import * as THREE from "three";
+import { useSelector } from "react-redux";
 
 import "./Earth.css";
 
@@ -13,21 +14,41 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
   const [earthHeight, setEarthHeight] = useState(800);
   const [loading, setLoading] = useState(true);
   const world = useRef();
+  const selectedRegion = useSelector((state) => state.selectedRegion);
+
+  const getRegionCoordinates = (regionName) => {
+    const region = countries.features.find(
+      (country) => country.properties.ADMIN === regionName
+    );
+    if (region) {
+      const centroid = turf.centroid(region);
+      return centroid.geometry.coordinates;
+    }
+    return null;
+  };
 
   useEffect(() => {
     world.current.controls().enableZoom = false;
     world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
 
+    if (selectedRegion) {
+      const coordinates = getRegionCoordinates(selectedRegion);
+      if (coordinates) {
+        const [lng, lat] = coordinates;
+        world.current.pointOfView({ lat, lng, altitude: 2 }, 1000);
+      }
+    }
+
     if (!isFullScreen) {
-      world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
+      //  world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
       setEarthHeight(500);
       setEarthWidth(500);
     } else {
-      world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
+      //  world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
       setEarthHeight(800);
       setEarthWidth(800);
     }
-  }, [isCollapsed, isFullScreen]);
+  }, [selectedRegion, isCollapsed, isFullScreen]);
 
   useEffect(() => {
     const CLOUDS_IMG_URL = "./clouds.jpg"; // from https://github.com/turban/webgl-earth
@@ -35,7 +56,6 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
     const CLOUDS_ROTATION_SPEED = -0.006; // deg/frame
 
     new THREE.TextureLoader().load(CLOUDS_IMG_URL, (cloudsTexture) => {
-      console.log("cloudsTexture", cloudsTexture);
       const clouds = new THREE.Mesh(
         new THREE.SphereGeometry(
           world.getGlobeRadius() * (1 + CLOUDS_ALT),
@@ -51,8 +71,6 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
         requestAnimationFrame(rotateClouds);
       })();
     });
-
-    console.log(world.current);
   }, []);
 
   const handlePolygonClick = (polygon, coords) => {
@@ -116,9 +134,12 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
         atmosphereColor="white"
         polygonsData={countries.features}
         polygonAltitude={(d) => (d === hoveredCountry ? 0.02 : 0.01)}
-        polygonCapColor={(d) =>
-          d === hoveredCountry ? "rgba(64,196,250, 0.5)" : `rgba(0, 0, 0, 0)`
-        }
+        polygonCapColor={(d) => {
+          if (d === hoveredCountry) return "rgba(64,196,250, 0.5)";
+          if (d.properties.ADMIN === selectedRegion)
+            return "rgba(64,196,250, 0.5)";
+          return "rgba(0, 0, 0, 0)";
+        }}
         polygonSideColor={() => `rgba(0, 0, 0, 0)`}
         polygonStrokeColor={() => `rgba(0, 0, 0, 0)`}
         polygonLabel={({ properties: d }) => `

@@ -16,6 +16,19 @@ function Dropdown(props) {
     selected.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        props.setIsOpen(!isOpen);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const mountedStyle = [
     {
       animation: "inCollapse 250ms ease-in",
