@@ -17,19 +17,10 @@ canvas {
   position: relative;
 }
 
-
-
 .video-overlay {
   position: absolute;
-  top: 10%; /* Adjust as needed */
-  left: 50%; /* Centers the video card horizontally */
-  transform: translateX(-50%); /* Aligns the center of the video card with the left position */
-  z-index: 10; /* Ensures the video card is above the Earth canvas */
-}
-
-
-.marker-container {
-  position: absolute; /* They're likely absolutely positioned over the globe */
-  z-index: 10; /* Lower than the navigation bar */
-  /* ... other styles ... */
+  top: 10%; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  z-index: 10; 
 }

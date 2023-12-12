@@ -90,8 +90,10 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
   };
 
   const closeVideoCard = () => {
-    setSelectedVideo(null); // This will set the selectedVideo to null, causing the VideoCardPin to not render
+    setSelectedVideo(null); 
   };
+
+
 
   const updateMarkers = (activePolygon) => {
     if (activePolygon) {
@@ -159,7 +161,6 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
         polygonStrokeColor={() => `rgba(0, 0, 0, 0)`}
         polygonLabel={({ properties: coordinates }) => `
         <b>${coordinates.ADMIN} (${coordinates.ISO_A2}):</b> <br />
-        Population: <i>${coordinates.POP_EST}</i>
       `}
         onPolygonHover={(country) => {
           setHoveredCountry(country);
