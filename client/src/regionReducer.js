@@ -4,7 +4,7 @@ const initialState = {
   
   function regionReducer(state = initialState, action) {
     switch (action.type) {
-      case 'SET_REGION':
+      case 'SET_SELECTED_REGION':
         return { ...state, selectedRegion: action.payload };
       default:
         return state;

@@ -12,6 +12,7 @@ function RegionSelector() {
 
   const handleRegionChange = (regionName) => {
     dispatch({ type: 'SET_REGION', payload: regionName });
+    setSelectedCountry(regionList.find(country => country.name === regionName));
   };
 
   useEffect(() => {
@@ -67,8 +68,7 @@ function RegionSelector() {
     },
   ];
 
-  const [selectedCountry, setSelectedCountry] = useState(regionList[0]);
-
+  const [selectedCountry, setSelectedCountry] = useState(regionList.find(country => country.name === "United States"));
   const mountedStyle = [
     {
       animation: "inAnimation 250ms ease-in",
