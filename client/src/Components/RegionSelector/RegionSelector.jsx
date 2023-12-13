@@ -205,7 +205,7 @@ function CountryDropdown({
     <div className={`country-dropdown ${isOpen && "open"}`}>
       <div className="country-dropdown-header" onClick={() => setIsOpen(true)}>
         <img
-          src={"/assets/flags/" + selectedCountry.flag}
+          src={process.env.PUBLIC_URL + "/assets/flags/" + selectedCountry.flag}
           alt={selectedCountry.name}
         />
         <span>{selectedCountry.name}</span>

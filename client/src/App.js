@@ -12,7 +12,6 @@ function PasswordEntry({ onPasswordSuccess }) {
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     if (password === "lego") {
-      // Replace 'yourPassword' with your actual password
       onPasswordSuccess();
       window.location.reload();
     } else {
@@ -46,8 +45,8 @@ function App() {
       {sessionStorage.isAuthenticated ? (
         <Provider store={store}>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/video" element={<VideoPage />} />
+            <Route path="/CONTENT-PLATFORM/" element={<Home />} />
+            <Route path="/CONTENT-PLATFORM/video" element={<VideoPage />} />
           </Routes>
         </Provider>
       ) : (

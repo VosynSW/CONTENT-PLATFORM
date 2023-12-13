@@ -1,4 +1,5 @@
 {
+  "homepage": "https://vosynsw.github.io/CONTENT-PLATFORM",
   "name": "client",
   "version": "1.0.0",
   "private": true,
@@ -15,6 +16,7 @@
     "axios": "^1.6.2",
     "babel-plugin-react-scoped-css": "^1.1.1",
     "craco-plugin-scoped-css": "^1.1.1",
+    "gh-pages": "^6.1.0",
     "globe.gl": "^2.32.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,7 +32,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "webpack --mode=production --node-env=production",
+    "build": "react-scripts build && shx cp build/index.html build/404.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:dev": "webpack --mode=development",
@@ -71,6 +73,7 @@
     "postcss": "^8.4.31",
     "postcss-loader": "^7.3.3",
     "prettier": "^3.1.0",
+    "shx": "^0.3.4",
     "style-loader": "^3.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",

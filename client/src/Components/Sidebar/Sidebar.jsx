@@ -17,7 +17,7 @@ function Sidebar(props) {
       name: "Live Tv",
       icon: "fa-tv",
       event: () => {
-        window.location.href = "/video";
+        window.location.href = "/CONTENT-PLATFORM/video";
       },
     },
     {
@@ -234,7 +234,7 @@ function Sidebar(props) {
           <img
             src={process.env.PUBLIC_URL + "/assets/vosyn_logo_long.png"}
             alt="Vosyn Logo"
-            onClick={() => (window.location.href = "/")}
+            onClick={() => (window.location.href = "/CONTENT-PLATFORM/")}
           />
         )}
       </div>
