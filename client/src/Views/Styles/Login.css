@@ -1,0 +1,44 @@
+.login-signup-container {
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
+    background-color: var(--darkgrey);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--text);
+    }
+    
+    .login-signup-container input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid var(--lightgrey);
+    border-radius: 5px;
+    background-color: var(--black);
+    color: var(--text);
+    font-size: 0.9em;
+    }
+    
+    .login-signup-container input:focus {
+    outline: none;
+    border-color: var(--blue);
+    }
+    
+    .login-signup-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--blue);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+    }
+    
+    .login-signup-container button:hover {
+    background-color: darken(var(--blue), 10%);
+    }
+  

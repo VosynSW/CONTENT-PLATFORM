@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Views/Home";
 import VideoPage from "./Views/VideoPage";
+import Login from "./Views/Login";
 import store from "./store.js";
 import "./App.css";
 
@@ -47,6 +48,7 @@ function App() {
           <Routes>
             <Route path="/CONTENT-PLATFORM/" element={<Home />} />
             <Route path="/CONTENT-PLATFORM/video" element={<VideoPage />} />
+            <Route path="/CONTENT-PLATFORM/login" element={<Login />} />
           </Routes>
         </Provider>
       ) : (
