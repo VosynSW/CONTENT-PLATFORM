@@ -17,15 +17,11 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
   const [activePolygon, setActivePolygon] = useState(null);
   const [loading, setLoading] = useState(true);
   const world = useRef();
-  const defaultRegion = 'United States of America';
+  const defaultRegion = 'Canada';
   const selectedRegion = useSelector(state => state.selectedRegion || defaultRegion);
-  console.log(selectedRegion);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const dispatch = useDispatch();
- //console.log(selectedRegion);
-  // click on region, reset selected region
-  // set default to united states
-  // session storage for keeping region selected for other pages 
+  const [selectedVideos, setSelectedVideos] = useState([]);
 
 
   const getRegionCoordinates = (regionName) => {
@@ -40,10 +36,10 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
 
 
   useEffect(() => {
+    setSelectedVideos([]);
     world.current.controls().enableZoom = false;
     world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
 
-    
     if (selectedRegion) {
       const coordinates = getRegionCoordinates(selectedRegion);
       if (coordinates) {
@@ -51,10 +47,7 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
         world.current.pointOfView({ lat, lng, altitude: 2 }, 1000);
         
       }
-    } else {
-      // world current pov is set to United States
-      world.current.pointOfView({ lat: 38.0, lng: -97.0, altitude: 2 }, 1000);
-    }
+    } 
 
     if (!isFullScreen) {
     //  world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
@@ -67,7 +60,11 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
     }
     console.log(world.current.camera());
     console.log(world.current.scene());
+    // 
+
   }, [selectedRegion,isCollapsed, isFullScreen]);
+
+  
 
   const handlePolygonClick = (polygon, coords) => {
     let { lat, lng, altitude } = coords;
@@ -84,16 +81,6 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
     
   };
 
-  const displayVideoCard = (videoData) => {
-   setSelectedVideo(videoData);
-   
-  };
-
-  const closeVideoCard = () => {
-    setSelectedVideo(null); 
-  };
-
-
 
   const updateMarkers = (activePolygon) => {
     if (activePolygon) {
@@ -106,6 +93,40 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
       console.log("no hovered country");
       return [];
     }
+  };
+
+
+
+
+  const createVideoCardHtml = (videoData) => {
+    const element = document.createElement("div");
+    element.innerHTML = `
+    <div class="video-pin">
+        <button class="video-pin-close-button">&times;</button>
+        <img src="${videoData.thumbnail}" alt="${videoData.title}" class="video-pin-thumbnail" />
+        <div class="video-pin-content">
+            <div class="video-pin-info">
+                <img
+                    class="video-pin-channel-img"
+                    src="${videoData.channelImg}"
+                    alt="${videoData.channelName}"
+                />
+                <div class="video-pin-text-content">
+                    <h3 class="video-pin-title">${videoData.title}</h3>
+                    <div class="video-pin-meta">
+                        <span class="video-pin-channel">${videoData.channel}</span>
+                        <span class="video-pin-views">${videoData.views} views</span>
+                        <span class="video-pin-date">${videoData.date}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+element.querySelector('.video-pin-close-button').onclick = () => {
+  setSelectedVideos(selectedVideos.filter(video => video.id !== videoData.id));
+};
+    return element;
   };
 
   const populateTags = (videoData) => {
@@ -124,21 +145,52 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
 
     element.innerHTML = marker;
     element.style.width = "50px";
-    element.style.height = "50px";
+    element.style.height = "60px";
     element.style["pointer-events"] = "auto";
     element.style.cursor = "pointer";
-    element.onclick = () => displayVideoCard(videoData);
-    element.style.transform = "translate(-50%, -100%)"; // centers the SVG horizontally on the point and moves it up by its own height
+
+
+    const videoCardElement = createVideoCardHtml(videoData);
+  videoCardElement.style.position = 'absolute';
+
+  // Function to position the video card
+  // const positionVideoCard = () => {
+  //   const markerPoint = turf.point([videoData.lng, videoData.lat]);
+  //   const polygonCentroid = turf.centroid(activePolygon);
+    videoCardElement.style.bottom = '90%';
+   // if (markerPoint.geometry.coordinates[0] < polygonCentroid.geometry.coordinates[0]) {
+      // Marker is to the left
+      videoCardElement.style.right = '90%'; // Position to the right of the marker
+   // } else if (markerPoint.geometry.coordinates[0] > polygonCentroid.geometry.coordinates[0]) {
+      // Marker is to the right
+  //    videoCardElement.style.left = '100%'; // Position to the left of the marker
+  //   } else {
+  //     // Marker is in the middle
+  //     videoCardElement.style.top = '100%'; // Position above the marker
+  //   }
+  // };
+
+  if (selectedVideos.some(video => video.id === videoData.id)) {
+    element.appendChild(videoCardElement);
+  //  positionVideoCard();
+  }
+  
+    // Click handler to toggle selection
+    element.onclick = (event) => {
+      event.preventDefault();
+      const isVideoSelected = selectedVideos.some(video => video.id === videoData.id);
+      if (isVideoSelected) {
+        setSelectedVideos(selectedVideos.filter(video => video.id !== videoData.id));
+      } else {
+        setSelectedVideos([...selectedVideos, videoData]);
+      }
+    };
+  
     return element;
   };
 
   return (
     <div className="earth-container"> {/* Container for both the globe and video card */}
-    {selectedVideo && (
-      <div className="video-overlay">
-          <VideoCardPin video={selectedVideo} onClose={closeVideoCard} />
-      </div>
-    )}
     <Suspense fallback={<div className="loading">Loading Earth...</div>}>
       <Globe
         backgroundColor="#121118"

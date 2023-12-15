@@ -1,29 +1,41 @@
 /* VideoPin.css */
 
 .video-pin {
-    width: 240px; /* Adjust as needed */
+    width: 200px; /* Adjust as needed */
     font-family: Arial, sans-serif;
     color: white;
     position: relative;
     background-color: #3d3d3d;
-    border-radius: 6px; /* Assuming you want to maintain the border-radius */
-    overflow: hidden; /* This ensures that the thumbnail respects the border-radius of the card */
+    border-radius: 6px; 
 }
+.video-pin::after {
+    content: '';
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #3d3d3d;
 
+    bottom: -17px; 
+    right: 0px; 
+}
 .video-pin-thumbnail {
     width: 100%;
     display: block;
+    border-radius: 6px;
 }
 
 .video-pin-content {
     padding: 10px;
     position: relative;
-    background-color: #3d3d3d; /* Dark background for the video details */
+    background-color: #3d3d3d;
+    border-radius: 6px;
 }
 
 .video-pin-info {
-    display: flex; /* Use flexbox to align items in a row */
-    align-items: center; /* Center items vertically */
+    display: flex; 
+    align-items: center;
 }
 
 .video-pin-title {
@@ -55,15 +67,15 @@
 .video-pin-close-button {
     position: absolute;
     top: 3px;
-    right: 3px; /* Adjust as needed, negative value to move it outside the content box */
+    right: 3px; 
     border: none;
-    background-color: white; /* White background for the circle */
-    color: #3d3d3d; /* Color of the 'x' icon */
+    background-color: white; 
+    color: #3d3d3d; 
     font-size: 20px;
     cursor: pointer;
-    width: 20px; /* Circle size */
-    height: 20px; /* Circle size */
-    border-radius: 50%; /* Circle shape */
+    width: 20px; 
+    height: 20px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,9 +83,9 @@
 }
 
 .video-pin-channel-img {
-    width: 30px; /* Example size, adjust as needed */
-    height: 30px; /* Example size, adjust as needed */
-    border-radius: 50%; /* Makes the image round */
+    width: 30px; 
+    height: 30px;
+    border-radius: 50%;
     object-fit: cover;
     margin-right: 10px; 
 }

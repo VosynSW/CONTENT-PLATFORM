@@ -19,7 +19,16 @@ function RegionSelector() {
   console.log(selectedCountry);
   const selectedRegion = useSelector((state) => state.selectedRegion);
  
-  
+  useEffect(() => {
+    const savedCountry = sessionStorage.getItem('selectedCountry');
+    if (savedCountry) {
+        const country = JSON.parse(savedCountry);
+        setSelectedCountry(country);
+        dispatch({ type: "SET_SELECTED_REGION", payload: country.name });
+    } else {
+       setSelectedCountry({ name: "World", flag: "ca.png" });
+    }
+}, [dispatch]);
 
   useEffect(() => {
     const countryList = Object.values(countries.features).map((country) => ({
@@ -31,6 +40,7 @@ function RegionSelector() {
     const foundCountry = countryList.find(country => country.name === selectedRegion);
     setSelectedCountry(foundCountry || { name: "World", flag: "ca.png" });
   }, [selectedRegion]);
+  
 
 
   useEffect(() => {
@@ -42,6 +52,7 @@ function RegionSelector() {
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
     dispatch({ type: "SET_SELECTED_REGION", payload: country.name });
+    sessionStorage.setItem('selectedCountry', JSON.stringify(country));
   };
 
   const toggleSearch = () => {
