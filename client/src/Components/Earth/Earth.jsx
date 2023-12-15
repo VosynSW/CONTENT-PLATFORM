@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedRegion } from '../../store';
 
 import "./Earth.css";
-import VideoCardPin from '../VideoCardPin/VideoCardPin';
 
 function Earth({ countries, videos, isCollapsed, isFullScreen }) {
   const [hoveredCountry, setHoveredCountry] = useState(null);
@@ -19,7 +18,6 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
   const world = useRef();
   const defaultRegion = 'Canada';
   const selectedRegion = useSelector(state => state.selectedRegion || defaultRegion);
-  const [selectedVideo, setSelectedVideo] = useState(null);
   const dispatch = useDispatch();
   const [selectedVideos, setSelectedVideos] = useState([]);
 
@@ -47,28 +45,27 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
         world.current.pointOfView({ lat, lng, altitude: 2 }, 1000);
         
       }
+    }
+    // find  polygon corresponding to the selectedRegion
+    const selectedPolygon = countries.features.find(country => country.properties.ADMIN === selectedRegion);
+    if (selectedPolygon) {
+      setActivePolygon(selectedPolygon); // set the active polygon state
+      updateMarkers(selectedPolygon); // update markers for this polygon
     } 
 
     if (!isFullScreen) {
-    //  world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
       setEarthHeight(500);
       setEarthWidth(500);
     } else {
-    //  world.current.pointOfView({ lat: 0, lng: 0, altitude: 2.0 }, 200);
-      setEarthHeight(800);
+     setEarthHeight(800);
       setEarthWidth(800);
     }
     console.log(world.current.camera());
     console.log(world.current.scene());
-    // 
-
   }, [selectedRegion,isCollapsed, isFullScreen]);
-
-  
 
   const handlePolygonClick = (polygon, coords) => {
     let { lat, lng, altitude } = coords;
-   // setActivePolygon(polygon);
    const regionName = polygon.properties.ADMIN;
    console.log(regionName);
    dispatch(setSelectedRegion(regionName));
@@ -80,7 +77,6 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
     }, 0);
     
   };
-
 
   const updateMarkers = (activePolygon) => {
     if (activePolygon) {
@@ -96,12 +92,11 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
   };
 
 
-
-
-  const createVideoCardHtml = (videoData) => {
+  const createVideoCardHtml = (videoData,isLeft) => {
     const element = document.createElement("div");
+    const pinClass = isLeft ? "video-pin":"video-pin left-tail";
     element.innerHTML = `
-    <div class="video-pin">
+    <div class="${pinClass}">
         <button class="video-pin-close-button">&times;</button>
         <img src="${videoData.thumbnail}" alt="${videoData.title}" class="video-pin-thumbnail" />
         <div class="video-pin-content">
@@ -114,9 +109,8 @@ function Earth({ countries, videos, isCollapsed, isFullScreen }) {
                 <div class="video-pin-text-content">
                     <h3 class="video-pin-title">${videoData.title}</h3>
                     <div class="video-pin-meta">
-                        <span class="video-pin-channel">${videoData.channel}</span>
+                    <span class="video-pin-views">${videoData.channelName}</span>
                         <span class="video-pin-views">${videoData.views} views</span>
-                        <span class="video-pin-date">${videoData.date}</span>
                     </div>
                 </div>
             </div>
@@ -131,6 +125,10 @@ element.querySelector('.video-pin-close-button').onclick = () => {
 
   const populateTags = (videoData) => {
     const element = document.createElement("div");
+    const markerPoint = turf.point([videoData.lng, videoData.lat]);
+    const polygonCentroid = turf.centroid(activePolygon);
+    const isLeft = markerPoint.geometry.coordinates[0] < polygonCentroid.geometry.coordinates[0];
+
     const marker = `
             <svg viewBox="-4 0 36 36" xmlns:xlink="http://www.w3.org/1999/xlink">
               <defs>
@@ -150,32 +148,28 @@ element.querySelector('.video-pin-close-button').onclick = () => {
     element.style.cursor = "pointer";
 
 
-    const videoCardElement = createVideoCardHtml(videoData);
+    const videoCardElement = createVideoCardHtml(videoData,isLeft);
   videoCardElement.style.position = 'absolute';
 
-  // Function to position the video card
-  // const positionVideoCard = () => {
-  //   const markerPoint = turf.point([videoData.lng, videoData.lat]);
-  //   const polygonCentroid = turf.centroid(activePolygon);
+  // position the video card according to pin position
+  const positionVideoCard = () => {
+    const markerPoint = turf.point([videoData.lng, videoData.lat]);
+    const polygonCentroid = turf.centroid(activePolygon);
     videoCardElement.style.bottom = '90%';
-   // if (markerPoint.geometry.coordinates[0] < polygonCentroid.geometry.coordinates[0]) {
-      // Marker is to the left
-      videoCardElement.style.right = '90%'; // Position to the right of the marker
-   // } else if (markerPoint.geometry.coordinates[0] > polygonCentroid.geometry.coordinates[0]) {
-      // Marker is to the right
-  //    videoCardElement.style.left = '100%'; // Position to the left of the marker
-  //   } else {
-  //     // Marker is in the middle
-  //     videoCardElement.style.top = '100%'; // Position above the marker
-  //   }
-  // };
+   if (markerPoint.geometry.coordinates[0] < polygonCentroid.geometry.coordinates[0]) {
+      videoCardElement.style.right = '90%'; 
+    } else if (markerPoint.geometry.coordinates[0] > polygonCentroid.geometry.coordinates[0]) {
+     videoCardElement.style.left = '90%'; 
+    } else {
+      videoCardElement.style.top = '100%';
+    }
+  };
 
   if (selectedVideos.some(video => video.id === videoData.id)) {
     element.appendChild(videoCardElement);
-  //  positionVideoCard();
+    positionVideoCard();
   }
   
-    // Click handler to toggle selection
     element.onclick = (event) => {
       event.preventDefault();
       const isVideoSelected = selectedVideos.some(video => video.id === videoData.id);
@@ -190,7 +184,7 @@ element.querySelector('.video-pin-close-button').onclick = () => {
   };
 
   return (
-    <div className="earth-container"> {/* Container for both the globe and video card */}
+    <div className="earth-container"> 
     <Suspense fallback={<div className="loading">Loading Earth...</div>}>
       <Globe
         backgroundColor="#121118"

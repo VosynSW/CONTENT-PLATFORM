@@ -4,21 +4,27 @@
     width: 200px; /* Adjust as needed */
     font-family: Arial, sans-serif;
     color: white;
-    position: relative;
     background-color: #3d3d3d;
     border-radius: 6px; 
+   
 }
 .video-pin::after {
     content: '';
     position: absolute;
     width: 0; 
     height: 0; 
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid #3d3d3d;
-
+    border-left: 25px solid transparent;
+    border-right: 0;
+    border-top: 25px solid #3d3d3d;
     bottom: -17px; 
-    right: 0px; 
+    right: 0px;
+}
+
+.video-pin.left-tail::after {
+    border-left: 0;
+    border-right: 25px solid transparent;
+    border-top: 25px solid #3d3d3d;
+    left: 0px;
 }
 .video-pin-thumbnail {
     width: 100%;
