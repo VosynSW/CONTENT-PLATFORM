@@ -3,6 +3,10 @@ import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Views/Home";
 import VideoPage from "./Views/VideoPage";
+import POC from "./Views/POCPage";
+import Playlists from "./Views/Playlists.jsx";
+import Navbar from "./Components/Navbar/Navbar";
+import Sidebar from "./Components/Sidebar/Sidebar";
 import store from "./store.js";
 import "./App.css";
 
@@ -35,8 +39,33 @@ function PasswordEntry({ onPasswordSuccess }) {
 }
 
 function App() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isPortrait, setIsPortrait] = useState(false);
+
   const authenticateUser = () => {
     sessionStorage.setItem("isAuthenticated", true);
+  };
+
+  const Layout = ({ children }) => {
+    return (
+      <div className="home-container">
+        <Sidebar
+          isCollapsed={isCollapsed}
+          setIsCollapsed={setIsCollapsed}
+          isPortrait={isPortrait}
+          setIsPortrait={setIsPortrait}
+        />
+
+        <div
+          className={`home-body ${isCollapsed ? "collapsed" : ""} ${
+            isPortrait ? "portrait" : ""
+          }`}
+        >
+          <Navbar />
+          {children}
+        </div>
+      </div>
+    );
   };
 
   console.log(sessionStorage.isAuthenticated);
@@ -45,8 +74,31 @@ function App() {
       {sessionStorage.isAuthenticated ? (
         <Provider store={store}>
           <Routes>
-            <Route path="/CONTENT-PLATFORM/" element={<Home />} />
-            <Route path="/CONTENT-PLATFORM/video" element={<VideoPage />} />
+            <Route path="/CONTENT-PLATFORM/" element={<POC />} />
+            <Route
+              path="/CONTENT-PLATFORM/home"
+              element={
+                <Layout>
+                  <Home />
+                </Layout>
+              }
+            />
+            <Route
+              path="/CONTENT-PLATFORM/video"
+              element={
+                <Layout>
+                  <VideoPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/CONTENT-PLATFORM/playlist"
+              element={
+                <Layout>
+                  <Playlists />
+                </Layout>
+              }
+            />
           </Routes>
         </Provider>
       ) : (

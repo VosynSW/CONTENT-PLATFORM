@@ -1,0 +1,105 @@
+.poc-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--bg);
+  color: var(--white);
+  height: 100%;
+}
+
+.poc-main {
+  display: flex;
+  flex-direction: column;
+  width: 16%;
+  height: 100%;
+  margin-left: 3%;
+  margin-right: 3%;
+  padding-top: 2%;
+}
+
+.poc-header {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.poc-header i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  background-color: var(--lightgrey);
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.poc-header i:hover {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.poc-header img {
+  height: 30px;
+}
+
+.poc-cards {
+  background-color: var(--darkgrey);
+  border-radius: 10px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  max-height: 90vh;
+  /* overflow-y: scroll; */
+}
+
+.poc-cards h1 {
+  font-size: 1.1rem;
+  margin-top: 5px;
+  width: 86%;
+  margin: 5px auto;
+  margin-top: 20px;
+}
+
+.poc-cards h2 {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--lightgrey);
+  padding-bottom: 10px;
+  font-weight: 200;
+  width: 86%;
+  margin: 0 auto;
+}
+
+.poc-card {
+  margin: 0 auto;
+  width: 90% !important;
+  font-size: 0.7rem;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.poc-card:hover {
+  color: var(--white);
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.02);
+}
+
+.poc-card > img {
+  width: 100% !important;
+}
+
+.poc-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto !important;
+  width: 75% !important;
+  margin-top: 3%;
+}
+.poc-player video {
+  width: 100% !important;
+  height: 100% !important;
+}

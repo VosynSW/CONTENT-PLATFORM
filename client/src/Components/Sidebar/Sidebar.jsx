@@ -2,27 +2,34 @@ import React, { useEffect, useState } from "react";
 import "./Sidebar.scoped.css";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import Modal from "../Modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar(props) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [showAllSubscriptions, setShowAllSubscriptions] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   let sideBarItems = [
     {
       name: "Home",
       icon: "fa-home",
+      event: () => navigate("/CONTENT-PLATFORM/home"),
     },
     {
       name: "Live Tv",
       icon: "fa-tv",
       event: () => {
-        window.location.href = "/CONTENT-PLATFORM/video";
+        navigate("/CONTENT-PLATFORM/video");
       },
     },
     {
       name: "My Playlist",
       icon: "fa-photo-film",
+      event: () => {
+        navigate("/CONTENT-PLATFORM/playlist");
+      },
     },
     {
       name: "Watch Together",
@@ -135,9 +142,12 @@ function Sidebar(props) {
     },
   ];
 
+  useEffect(() => {
+    setIsCollapsed(props.isCollapsed);
+  }, [props.isCollapsed]);
+
   const toggleSidebar = () => {
     props.setIsCollapsed(!isCollapsed);
-    setIsCollapsed(!isCollapsed);
   };
 
   const toggleShowAllSubscriptions = () => {
@@ -234,7 +244,7 @@ function Sidebar(props) {
           <img
             src={process.env.PUBLIC_URL + "/assets/vosyn_logo_long.png"}
             alt="Vosyn Logo"
-            onClick={() => (window.location.href = "/CONTENT-PLATFORM/")}
+            onClick={() => navigate("/CONTENT-PLATFORM/")}
           />
         )}
       </div>

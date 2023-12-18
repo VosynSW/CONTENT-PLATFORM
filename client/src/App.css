@@ -31,6 +31,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  background-color: var(--bg);
 }
 
 * {
@@ -49,6 +50,7 @@ body {
   font-family: "Inter", sans-serif;
   min-height: 100%;
   width: 100%;
+  transition: all 0.5s ease-in-out;
   /* border: 5px dashed red; */
 }
 
@@ -65,7 +67,7 @@ body {
 
 .row {
   display: flex;
-  flex-direction: row;
+  flex-direction: row !important;
   align-items: baseline;
 }
 
@@ -94,7 +96,6 @@ body {
 }
 
 .radial-circle-pink {
-  z-index: -1;
   border-radius: 100%;
   position: absolute;
   top: 23%;
@@ -110,7 +111,6 @@ body {
 }
 
 .radial-circle-blue {
-  z-index: -1;
   border-radius: 100%;
   position: absolute;
   top: 35%;
@@ -122,6 +122,24 @@ body {
     0 0 1000px #46c4f5,
     inset 0 0 1000px;
   -webkit-animation: pulse 2s linear 1.5s infinite;
+}
+
+.poc-balls {
+  left: 25%;
+}
+
+.right-ball {
+  left: 75%;
+}
+
+.video-ball-pink {
+  left: 5%;
+  top: 10%;
+}
+
+.video-ball-blue {
+  left: 5%;
+  top: 20%;
 }
 
 .temp-login {

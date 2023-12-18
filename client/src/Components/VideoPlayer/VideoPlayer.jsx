@@ -4,7 +4,7 @@ import Switch from "../Switch/Switch";
 import "./VideoPlayer.css"; // Make sure to create a corresponding CSS file for styling
 import vid from "./messi.mp4";
 
-const VideoPlayer = ({ src }) => {
+const VideoPlayer = ({ src, type }) => {
   const videoRef = useRef(null);
   const timelineRef = useRef(null);
   const [playing, setPlaying] = useState(false);
@@ -143,6 +143,7 @@ const VideoPlayer = ({ src }) => {
         <source src={vid} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+
       <div className={`controls ${showTimeline ? "show" : ""}`}>
         <button onClick={togglePlayPause}>
           {playing ? (

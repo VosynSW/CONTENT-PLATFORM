@@ -1,8 +1,10 @@
-import React from "react";
-import "./VideoCards.css";
+import React, { useState } from "react";
+import "./VideoCards.scoped.css";
 import videoData from "../../Data/videos.json";
 
 const VideoCards = (props) => {
+  const [expanded, setExpanded] = useState(false);
+
   if (videoData.length === 0) return <div>Loading...</div>;
 
   let allData = props?.data;
@@ -11,14 +13,23 @@ const VideoCards = (props) => {
     allData = videoData;
   }
 
+  const limitedData = expanded ? allData : allData.slice(0, props.max);
+
+  const handleShowMore = () => {
+    setExpanded(true);
+  };
+
   return (
     // display video card data
     <div className="video-cards">
-      <div className="row wrap">
-        {allData.map((video) => (
+      <div
+        className={`wrap ${props.containerName ? props.containerName : "row"}`}
+      >
+        {limitedData.map((video) => (
           <div
             className={`video-card ${props.className && props.className} `}
             key={video.id}
+            // onClick={() => props.getUrl(video.url)}
           >
             <img src={video.thumbnail} alt={video.title} />
             <div className="video-info">
@@ -38,6 +49,9 @@ const VideoCards = (props) => {
           </div>
         ))}
       </div>
+      {/* <button className="show-more-button" onClick={handleShowMore}>
+        {expanded ? "Show Less" : "Show More"}
+      </button> */}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import VideoCards from "../Components/VideoCards/VideoCards";
 import Airis from "../Components/Airis/Airis";
 import countriesData from "../Data/countries.json";
 import videosData from "../Data/videos.json";
+import Playlists from "./Playlists";
 
 import "./Styles/Home.css";
 
@@ -87,48 +88,34 @@ function Home() {
 
   const toggleFullScreen = () => setIsFullScreen(!isFullScreen);
   return (
-    <div className="home-container">
-      <Sidebar
-        triggerRender={triggerRender}
-        setIsCollapsed={setIsCollapsed}
-        isPortrait={isPortrait}
-      />
-      <div
-        className={`home-body ${isCollapsed ? "collapsed" : ""} ${
-          isPortrait ? "portrait" : ""
-        }`}
-      >
-        <Navbar />
-        <div className="globe-container">
-          <div className="video-type-bar">{videoTypeBar}</div>
-          <div
-            className="home-fullscreen"
-            onClick={() => setIsFullScreen(!isFullScreen)}
-          >
-            <h2>{isFullScreen ? "Exit Fullscreen" : "Fullscreen"}</h2>
-            <i className="fa-solid fa-expand-arrows-alt fa-beat"></i>
-          </div>
-          <div className="home-airis">
-            <Airis />
-          </div>
-          <div className="home-earth">
-            <Earth
-              reRender={reRender}
-              videos={videosData}
-              countries={countriesData}
-              isCollapsed={isCollapsed}
-              isFullScreen={isFullScreen}
-            />
-          </div>
+    <>
+      <div className="globe-container">
+        <div className="video-type-bar">{videoTypeBar}</div>
+        <div
+          className="home-fullscreen"
+          onClick={() => setIsFullScreen(!isFullScreen)}
+        >
+          <h2>{isFullScreen ? "Exit Fullscreen" : "Fullscreen"}</h2>
+          <i className="fa-solid fa-expand-arrows-alt fa-beat"></i>
         </div>
-        {/* {!isFullScreen && ( */}
-        <div className="home-videos">
-          <h1>TRENDING IN CANADA 🇨🇦</h1>
-          <VideoCards />
+        <div className="home-airis">
+          <Airis />
         </div>
-        {/* )} */}
+        <div className="home-earth">
+          <Earth
+            reRender={reRender}
+            videos={videosData}
+            countries={countriesData}
+            isCollapsed={isCollapsed}
+            isFullScreen={isFullScreen}
+          />
+        </div>
       </div>
-    </div>
+      <div className="home-videos">
+        <h1>TRENDING IN CANADA 🇨🇦</h1>
+        <VideoCards />
+      </div>
+    </>
   );
 }
 

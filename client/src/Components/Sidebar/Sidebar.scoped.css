@@ -8,7 +8,6 @@
   justify-content: space-between;
   z-index: 6;
   position: fixed;
-  transition: all 0.2s ease-in-out;
   animation: fader 0.3s ease-in-out;
   padding: 2rem 0rem 2rem 2rem;
 }
@@ -58,6 +57,7 @@
 
 .sidebar-container:not(.sidebar-collapsed) .sidebar-item-container {
   max-height: 1000px; /* Adjust as needed */
+  animation: none !important;
 }
 
 .sidebar-item {
@@ -130,6 +130,7 @@
   width: 0px !important;
   height: 0px !important;
   padding: 0px !important;
+  animation: fade-out 0.3s ease-in-out !important;
 }
 
 .sidebar-title-collapsed {
@@ -179,6 +180,17 @@
     visibility: visible;
     transform: translateX(0px);
   }
+}
+
+@keyframes fade-out {
+  /* 0% {
+    transform: translateX(0px);
+  }
+
+  100% {
+    visibility: hidden;
+    transform: translateX(-250px);
+  } */
 }
 
 /* style the scroll bar */

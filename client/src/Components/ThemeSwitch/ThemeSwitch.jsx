@@ -31,7 +31,9 @@ function ThemeSwitch(props) {
           aria-label="Activate Light Mode"
         ></i>
         <div
-          className={`slider ${isDarkMode ? "slider-moon" : "slider-sun"}`}
+          className={`slider-theme ${
+            isDarkMode ? "slider-moon" : "slider-sun"
+          }`}
         ></div>
         <i
           ref={moonRef}
