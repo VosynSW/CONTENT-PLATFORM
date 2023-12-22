@@ -68,7 +68,6 @@ function App() {
     );
   };
 
-  console.log(sessionStorage.isAuthenticated);
   return (
     <>
       {sessionStorage.isAuthenticated ? (

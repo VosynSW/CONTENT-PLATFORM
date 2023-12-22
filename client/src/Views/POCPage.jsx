@@ -32,20 +32,19 @@ const POCPage = () => {
         {showCards && (
           <div className="poc-cards">
             <h1>Your Curated Playlist: 5 videos</h1>
-            <h2>
-              Catch me up on popular videos from last month that I would be
-              interested in
-            </h2>
-            <VideoCards
-              max={3}
-              className="poc-card"
-              getUrl={(e) => setVideoURL(e)}
-            />
+            <h2>Show me popular videos I would like!</h2>
+            <span>
+              <VideoCards
+                max={3}
+                className="poc-card"
+                getUrl={(e) => setVideoURL(e)}
+              />
+            </span>
           </div>
         )}
       </div>
 
-      <div className="poc-player">
+      <div className={`poc-player ${!showCards ? "full" : "half"}`}>
         <VideoPlayer />
       </div>
       <div className="radial-circle-pink poc-balls"></div>

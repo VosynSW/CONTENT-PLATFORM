@@ -46,11 +46,17 @@
 .poc-cards {
   background-color: var(--darkgrey);
   border-radius: 10px;
-  margin: 0 auto;
+  margin: 5px auto;
   padding-bottom: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-  max-height: 90vh;
-  /* overflow-y: scroll; */
+  max-height: 92%;
+  overflow: hidden;
+}
+
+.poc-cards span {
+  display: flex;
+  overflow-y: scroll;
+  height: 90%;
 }
 
 .poc-cards h1 {
@@ -99,6 +105,19 @@
   width: 75% !important;
   margin-top: 3%;
 }
+
+.poc-player.full {
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+  transform: translateX(-10%);
+}
+
+.poc-player.half {
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+  transform: scaleX(1) scaleY(1) translateX(0%);
+}
+
 .poc-player video {
   width: 100% !important;
   height: 100% !important;

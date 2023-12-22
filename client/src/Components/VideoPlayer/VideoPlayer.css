@@ -11,8 +11,8 @@
   margin: auto;
   background: black;
   overflow: hidden;
-  border: none !important;
-  border-radius: 10px;
+  border: 2px solid var(--darkgrey) !important;
+  border-radius: 10px 10px 10px 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   transition: all 0.2s ease-in-out !important;
   z-index: 1;
@@ -27,6 +27,18 @@
   z-index: 1;
 }
 
+.video-title {
+  position: absolute;
+  top: -39px;
+  left: 10px;
+  color: var(--white);
+  font-size: 1.5rem;
+  z-index: 2;
+  border-radius: 5px 5px 0px 0px;
+  padding: 5px 10px;
+  background-color: var(--darkgrey);
+}
+
 .controls {
   position: absolute;
   bottom: 1%;
@@ -39,7 +51,6 @@
   justify-content: space-between;
   padding: 10px;
   transition: all 0.2s ease-in-out;
-  opacity: 0;
   background: rgba(0, 0, 0, 0.527);
   z-index: 2;
 }
