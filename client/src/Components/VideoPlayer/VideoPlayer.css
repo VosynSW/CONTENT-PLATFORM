@@ -10,12 +10,10 @@
   max-height: 90vh;
   margin: auto;
   background: black;
-  overflow: hidden;
-  border: 2px solid var(--darkgrey) !important;
+  border: 3px solid var(--darkgrey) !important;
   border-radius: 10px 10px 10px 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   transition: all 0.2s ease-in-out !important;
-  z-index: 1;
+  z-index: 2;
 }
 
 .video-player video {
@@ -25,6 +23,7 @@
   border: none !important;
   transition: all 2s ease-in-out;
   z-index: 1;
+  border-radius: 7px;
 }
 
 .video-title {
@@ -53,6 +52,7 @@
   transition: all 0.2s ease-in-out;
   background: rgba(0, 0, 0, 0.527);
   z-index: 2;
+  opacity: 0;
 }
 
 .controls.show {
@@ -204,3 +204,69 @@
   height: 15px;
 }
 /* Add additional styles below */
+
+.video-player::before {
+  content: ""; /* Required for pseudo-elements */
+  position: absolute;
+  left: 2%;
+  top: 30%;
+  bottom: 0;
+  width: 50%; /* 20% width of the parent div */
+  height: 60%;
+  box-shadow:
+    0 0 1000px #d326c5,
+    inset 0 0 1000px #d326c5;
+  border-radius: 100%;
+  z-index: -2;
+}
+
+.video-player::after {
+  z-index: -2;
+  content: ""; /* Required for pseudo-elements */
+  border-radius: 100%;
+  position: absolute;
+  left: 2%;
+  top: 10%;
+  bottom: 0;
+  width: 50%; /* 20% width of the parent div */
+  height: 60%;
+  box-shadow:
+    0 0 1000px #46c4f5,
+    inset 0 0 1000px #46c4f5; /* Ensure the inner shadow has the same color */
+}
+
+.video-player-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.video-player-box::before {
+  content: ""; /* Required for pseudo-elements */
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  bottom: 0;
+  width: 50%; /* 20% width of the parent div */
+  height: 60%;
+  box-shadow:
+    0 0 1000px #d326c5,
+    inset 0 0 1000px #d326c5;
+  border-radius: 100%;
+  z-index: -2;
+}
+
+.video-player-box::after {
+  z-index: -2;
+  content: ""; /* Required for pseudo-elements */
+  border-radius: 100%;
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  bottom: 0;
+  width: 50%; /* 20% width of the parent div */
+  height: 60%;
+  box-shadow:
+    0 0 1000px #46c4f5,
+    inset 0 0 1000px #46c4f5; /* Ensure the inner shadow has the same color */
+}

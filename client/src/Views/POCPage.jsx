@@ -20,13 +20,21 @@ const POCPage = () => {
     <div className="poc-container">
       <div className="poc-main">
         <div className="poc-header">
-          <i className="fa-solid fa-photo-film" onClick={handleIconClick}></i>
+          <i>
+            <img
+              className="icon playlist-icon"
+              src={process.env.PUBLIC_URL + "/assets/icons/playlist.svg"}
+              alt=""
+              onClick={handleIconClick}
+            />
+          </i>
+
           <img
             src={process.env.PUBLIC_URL + "/assets/vosyn_logo_long.png"}
             alt="Vosyn Logo"
-            onClick={() =>
-              (window.location.href = process.env.PUBLIC_URL + "/home")
-            }
+            // onClick={() =>
+            //   (window.location.href = process.env.PUBLIC_URL + "/home")
+            // }
           />
         </div>
         {showCards && (
@@ -47,10 +55,10 @@ const POCPage = () => {
       <div className={`poc-player ${!showCards ? "full" : "half"}`}>
         <VideoPlayer />
       </div>
-      <div className="radial-circle-pink poc-balls"></div>
+      {/* <div className="radial-circle-pink poc-balls"></div>
       <div className="radial-circle-blue poc-balls"></div>
       <div className="radial-circle-pink poc-balls right-ball"></div>
-      <div className="radial-circle-blue poc-balls right-ball"></div>
+      <div className="radial-circle-blue poc-balls right-ball"></div> */}
     </div>
   );
 };

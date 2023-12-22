@@ -19,6 +19,8 @@ const VideoPlayer = ({ src, type }) => {
   const [resolution, setResolution] = useState("1080p");
   const [timerState, setTimerState] = useState(false);
   const [isFullScreen, setFullscreen] = useState(false);
+  const [isCursorVisible, setIsCursorVisible] = useState(true);
+  const mouseMoveTimer = useRef(null);
 
   const volumeContainerRef = useRef(null);
   const settingsRef = useRef(null);
@@ -56,6 +58,21 @@ const VideoPlayer = ({ src, type }) => {
     }
   };
 
+  const handleMouseMove = () => {
+    if (isFullScreen) {
+      clearTimeout(mouseMoveTimer.current);
+      setIsCursorVisible(true);
+      setShowTimeline(true);
+      mouseMoveTimer.current = setTimeout(() => {
+        setIsCursorVisible(false);
+        setShowTimeline(false);
+      }, 1000);
+    } else {
+      setIsCursorVisible(true);
+      setShowTimeline(true);
+    }
+  };
+
   const handleTimelineClick = (e) => {
     const timeline = timelineRef.current;
     const rect = timeline.getBoundingClientRect();
@@ -63,6 +80,28 @@ const VideoPlayer = ({ src, type }) => {
     const newTime = percent * duration;
     videoRef.current.currentTime = newTime;
   };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    video.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      video.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [isFullScreen]);
+
+  useEffect(() => {
+    const fullscreenChange = () => {
+      const isFS = !!document.fullscreenElement;
+      setFullscreen(isFS);
+    };
+
+    document.addEventListener("fullscreenchange", fullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", fullscreenChange);
+    };
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -103,6 +142,7 @@ const VideoPlayer = ({ src, type }) => {
       }
       if (isFullScreen) {
         document.exitFullscreen();
+        setFullscreen(false);
       }
     }
   };
@@ -130,18 +170,6 @@ const VideoPlayer = ({ src, type }) => {
     };
   }, [showVolumeSlider, showSettings]);
 
-  useEffect(() => {
-    const fullscreenChange = () => {
-      setFullscreen(!!document.fullscreenElement);
-    };
-
-    document.addEventListener("fullscreenchange", fullscreenChange);
-
-    return () => {
-      document.removeEventListener("fullscreenchange", fullscreenChange);
-    };
-  }, []);
-
   return (
     <>
       <h1 className="video-title">
@@ -149,8 +177,13 @@ const VideoPlayer = ({ src, type }) => {
       </h1>
       <div
         onMouseEnter={() => setShowTimeline(true)}
-        // onMouseLeave={() => setShowTimeline(false)}
+        onMouseLeave={() => {
+          setTimeout(() => {
+            setShowTimeline(false);
+          }, 1000);
+        }}
         className={`video-player ${isFullScreen ? "" : ""}`}
+        style={{ cursor: isCursorVisible ? "default" : "none" }}
       >
         <video
           ref={videoRef}
@@ -165,8 +198,9 @@ const VideoPlayer = ({ src, type }) => {
           <source src={vid} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        <div className="video-player-box"></div>
 
-        <div className={`controls ${isFullScreen ? "fullscreen" : ""}`}>
+        <div className={`controls ${showTimeline ? "show" : ""}`}>
           <button onClick={togglePlayPause}>
             {playing ? (
               <i className="fa-solid fa-pause"></i>
