@@ -68,8 +68,6 @@ function VideoPage() {
             isPortrait ? "portrait" : ""
           } ${!isVisible ? "invisible" : ""}`}
         >
-          <div className="radial-circle-pink video-ball-pink"></div>
-          <div className="radial-circle-blue video-ball-blue"></div>
           <VideoPlayer src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
           <div className="video-description">
             <div className="header">

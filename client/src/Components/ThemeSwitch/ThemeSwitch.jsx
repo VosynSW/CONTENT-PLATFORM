@@ -23,7 +23,7 @@ function ThemeSwitch(props) {
 
   return (
     <div className={props.className}>
-      <label className="switch">
+      <label className="switch-theme">
         <i
           ref={sunRef}
           className="fa-solid fa-sun"
