@@ -8,15 +8,18 @@ import Playlists from "./Views/Playlists.jsx";
 import Navbar from "./Components/Navbar/Navbar";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import store from "./store.js";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 
 function PasswordEntry({ onPasswordSuccess }) {
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     if (password === "lego") {
       onPasswordSuccess();
+      navigate("/CONTENT-PLATFORM");
       window.location.reload();
     } else {
       alert("Incorrect password");

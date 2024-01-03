@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import VideoPlayer from "../Components/VideoPlayer/VideoPlayer";
 import VideoCards from "../Components/VideoCards/VideoCards";
+import axios from "axios";
 
 import "./Styles/POC.css";
 
@@ -14,6 +15,68 @@ const POCPage = () => {
 
   useEffect(() => {
     console.log(videoURL);
+    let userData = {
+      username: "test2",
+      password: "test2",
+    };
+
+    const registerUser = async () => {
+      axios
+        .post("/user/register/", userData)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error("Request failed:", error.response.data.username[0]);
+        });
+    };
+
+    const deleteUser = async (token) => {
+      axios
+        .delete("/user/delete/", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add the token in the Authorization header
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error("Request failed:", error.response);
+        });
+    };
+
+    const loginUser = async () => {
+      axios
+        .post("/user/login/", userData)
+        .then((response) => {
+          console.log(response);
+          let token = response.data.token;
+          getUser(token);
+        })
+        .catch((error) => {
+          console.error("Request failed:", error.response);
+        });
+    };
+
+    const getUser = async (token) => {
+      axios
+        .get("/user/profile/", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add the token in the Authorization header
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error("Request failed:", error.response);
+        });
+    };
+
+    // registerUser();
+    // deleteUser();
+    loginUser();
   }, [videoURL]);
 
   return (
