@@ -1,14 +1,17 @@
 {
   "files": {
-    "main.css": "/CONTENT-PLATFORM/static/css/main.b53b7011.css",
-    "main.js": "/CONTENT-PLATFORM/static/js/main.85506913.js",
+    "main.css": "/CONTENT-PLATFORM/static/css/main.48afff72.css",
+    "main.js": "/CONTENT-PLATFORM/static/js/main.ae15a22c.js",
     "static/media/messi.mp4": "/CONTENT-PLATFORM/static/media/messi.8958ad0aacb5540e010b.mp4",
+    "static/media/swift.mp4": "/CONTENT-PLATFORM/static/media/swift.d3ada1dec1eeaedefc16.mp4",
+    "static/media/swiftEnglish.mpeg": "/CONTENT-PLATFORM/static/media/swiftEnglish.addd03ab31a61e52546a.mpeg",
+    "static/media/swiftMandarin.mpeg": "/CONTENT-PLATFORM/static/media/swiftMandarin.722b17fe112c167510cb.mpeg",
     "index.html": "/CONTENT-PLATFORM/index.html",
-    "main.b53b7011.css.map": "/CONTENT-PLATFORM/static/css/main.b53b7011.css.map",
-    "main.85506913.js.map": "/CONTENT-PLATFORM/static/js/main.85506913.js.map"
+    "main.48afff72.css.map": "/CONTENT-PLATFORM/static/css/main.48afff72.css.map",
+    "main.ae15a22c.js.map": "/CONTENT-PLATFORM/static/js/main.ae15a22c.js.map"
   },
   "entrypoints": [
-    "static/css/main.b53b7011.css",
-    "static/js/main.85506913.js"
+    "static/css/main.48afff72.css",
+    "static/js/main.ae15a22c.js"
   ]
 }
